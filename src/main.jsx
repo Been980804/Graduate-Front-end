@@ -4,7 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
-import MovieDetails from "./components/MovieDetails.jsx";
+import MovieDetails, {
+	loader as detailLoader,
+} from "./components/MovieDetails.jsx";
 import "./index.css";
 import RouteLayout from "./routes/RouteLayout.jsx";
 
@@ -19,8 +21,9 @@ const routes = createBrowserRouter([
 				loader: movieLoader,
 			},
 			{
-				path: "/movie/details:id",
+				path: "/details/:mov_id",
 				element: <MovieDetails />,
+				loader: detailLoader,
 			},
 		],
 	},

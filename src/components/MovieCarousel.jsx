@@ -20,7 +20,7 @@ export default function MovieCarousel() {
 				movies.map((movie) => {
 					return (
 						<Carousel.Item key={movie.mov_no}>
-							<Link to={`/movies/detail/${movie.mov_no}`} key={movie.mov_no}>
+							<Link to={`/details/${movie.mov_no}`} key={movie.mov_no}>
 								<div className="ImageWrapper">
 									<img
 										src={movie.mov_posterURL}

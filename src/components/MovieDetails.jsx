@@ -39,8 +39,9 @@ export default function MovieDetails() {
 
 export async function loader({ params }) {
 	const response = await fetch(
-		"http://localhost:8080/movies/detail/" + params.mov_no
+		"http://localhost:8080/detail/getDetailInfo/" + params.mov_id
 	);
 	const resData = await response.json();
-	return resData;
+	console.log(resData);
+	return resData.data.detailInfo;
 }
