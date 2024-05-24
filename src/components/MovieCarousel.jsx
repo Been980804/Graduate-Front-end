@@ -1,38 +1,40 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+
 import "../css/MovieCarousel.css";
 
 export default function MovieCarousel() {
 	const [index, setIndex] = useState(0);
+	const movies = useLoaderData();
 
 	function handleSelect(selectedIndex) {
 		setIndex(selectedIndex);
 	}
 
 	return (
-		<Carousel className="MovieWrapper" activeIndex={index} onSelect={handleSelect}>
-			<Carousel.Item>
-				<Link to={"/movie/1"}>
-					<img
-						src={"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88214/88214_1000.jpg"}
-					></img>
-				</Link>
-			</Carousel.Item>
-			<Carousel.Item>
-				<Link to={"movie/2"}>
-					<img
-						src={"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88148/88148_1000.jpg"}
-					></img>
-				</Link>
-			</Carousel.Item>
-			<Link to={"movie/3"}>
-				<Carousel.Item>
-					<img
-						src={"http://img.cgv.co.kr/Movie/Thumbnail/Poster/000088/88104/88104_1000.jpg"}
-					></img>
-				</Carousel.Item>
-			</Link>
+		<Carousel
+			className="ItemWrapper"
+			activeIndex={index}
+			onSelect={handleSelect}>
+			{movies &&
+				movies.map((movie) => {
+					return (
+						<Carousel.Item>
+							<Link to={`/movies/detail/${movies.mov_no}`} key={movie.mov_no}>
+								<div className="ImageWrapper">
+									<img src={mov_posterURL} alt={mov_title} />
+								</div>
+							</Link>
+						</Carousel.Item>
+					);
+				})}
 		</Carousel>
 	);
+}
+
+export async function loader() {
+	const response = await fetch("http://localhost:8080/");
+	const resData = await response.json();
+	return resData.movies;
 }

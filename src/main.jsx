@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RouteLayout from "./routes/RouteLayout.jsx";
 import MovieCarousel from "./components/MovieCarousel.jsx";
+import MovieDetails from "./components/MovieDetails.jsx";
+import "./index.css";
+import RouteLayout from "./routes/RouteLayout.jsx";
 
 const routes = createBrowserRouter([
 	{
@@ -16,7 +16,7 @@ const routes = createBrowserRouter([
 				element: <MovieCarousel />,
 			},
 			{
-				path: "/movie/:id",
+				path: "/movie/details:id",
 				element: <MovieDetails />,
 			},
 		],
