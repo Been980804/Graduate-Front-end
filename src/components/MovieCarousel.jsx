@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link, useLoaderData } from "react-router-dom";
-
 import "../css/MovieCarousel.css";
 
 export default function MovieCarousel() {
@@ -20,10 +19,14 @@ export default function MovieCarousel() {
 			{movies &&
 				movies.map((movie) => {
 					return (
-						<Carousel.Item>
-							<Link to={`/movies/detail/${movies.mov_no}`} key={movie.mov_no}>
+						<Carousel.Item key={movie.mov_no}>
+							<Link to={`/movies/detail/${movie.mov_no}`} key={movie.mov_no}>
 								<div className="ImageWrapper">
-									<img src={mov_posterURL} alt={mov_title} />
+									<img
+										src={movie.mov_posterURL}
+										alt={movie.mov_no}
+										key={movie.mov_no}
+									/>
 								</div>
 							</Link>
 						</Carousel.Item>
@@ -34,7 +37,7 @@ export default function MovieCarousel() {
 }
 
 export async function loader() {
-	const response = await fetch("http://localhost:8080/");
+	const response = await fetch("http://localhost:8080/main/posterURL");
 	const resData = await response.json();
-	return resData.movies;
+	return resData.data.posterURLList;
 }
