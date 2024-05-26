@@ -1,6 +1,6 @@
 // http://localhost:8080/user/login
+import axios from "axios";
 import { useRef } from "react";
-
 export default function Login() {
 	const id = useRef();
 	const password = useRef();
@@ -9,18 +9,29 @@ export default function Login() {
 		event.preventDefault();
 		const enteredId = id.current.value;
 		const enteredPassword = password.current.value;
-		const response = await fetch("http://localhost:8080/user/login/", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: {
-				id: enteredId,
+		// const response = await fetch("http://localhost:8080/user/login", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: {
+		// 		mem_id: enteredId,
+		// 		pwd: enteredPassword,
+		// 	},
+		// });
+		// console.log(enteredId, enteredPassword);
+		// const resultMsg = await response.json();
+		// console.log(resultMsg);
+		axios({
+			method: "post",
+			url: "http://localhost:8080/user/login",
+			data: {
+				mem_id: enteredId,
 				pwd: enteredPassword,
 			},
+		}).then(function (response) {
+			console.log(response);
 		});
-		const resultMsg = await response.json();
-		console.log(resultMsg);
 	}
 
 	return (
