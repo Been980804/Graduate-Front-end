@@ -42,6 +42,5 @@ export async function loader({ params }) {
 		"http://localhost:8080/detail/getDetailInfo/" + params.mov_id
 	);
 	const resData = await response.json();
-	console.log(resData);
 	return resData.data.detailInfo;
 }
