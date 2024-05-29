@@ -1,54 +1,52 @@
 // http://localhost:8080/user/login
 import axios from "axios";
-import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
-	const id = useRef();
-	const password = useRef();
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm();
+	const navigate = useNavigate();
 
-	async function handleSubmit(event) {
-		event.preventDefault();
-		const enteredId = id.current.value;
-		const enteredPassword = password.current.value;
-		// const response = await fetch("http://localhost:8080/user/login", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: {
-		// 		mem_id: enteredId,
-		// 		pwd: enteredPassword,
-		// 	},
-		// });
-		// console.log(enteredId, enteredPassword);
-		// const resultMsg = await response.json();
-		// console.log(resultMsg);
+	const onSubmit = (data) => {
 		axios({
 			method: "post",
 			url: "http://localhost:8080/user/login",
+			withCredentials: true,
 			data: {
-				mem_id: enteredId,
-				pwd: enteredPassword,
+				mem_id: data.mem_id,
+				pwd: data.pwd,
 			},
-		}).then(function (response) {
-			console.log(response);
+		}).then((response) => {
+			if (response.status === 200) {
+				if (response.data.common.res_code === 200) {
+					navigate("/");
+				} else {
+					alert("ID 혹은 비밀번호가 일치하지 않습니다.");
+				}
+			} else {
+				return;
+			}
 		});
-	}
+	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<h2>Login</h2>
-
+		<>
 			<div>
-				<div>
-					<label htmlFor="id">Id</label>
-					<input id="id" type="id" ref={id} />
-				</div>
-				<div>
-					<label htmlFor="password">Password</label>
-					<input id="pwd" type="password" ref={password} />
-				</div>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<h2>Login</h2>
+					<label>ID</label>
+					<input {...register("mem_id", { required: true })} />
+					{errors.mem_id && <p>ID를 입력하세요</p>}
+					<label>Password</label>
+					<input type="password" {...register("pwd", { required: true })} />
+					{errors.pwd && <p>비밀번호를 입력하세요</p>}
+					<input type="submit" />
+				</form>
 			</div>
-			<button className="submit">Login</button>
-		</form>
+		</>
 	);
 }
