@@ -1,7 +1,17 @@
 img {
 	width: 30%;
-	align-items: center;
+	z-index: 1;
 }
 .MovieWrapper {
 	align-items: center;
 }
+.ImageWrapper{
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+.ItemWrapper {
+    background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%);
+	position: relative;
+}
+
