@@ -22,7 +22,7 @@ export default function MovieCarousel() {
 						<Carousel.Item key={movie.mov_no}>
 							<Link to={`/details/${movie.mov_no}`} key={movie.mov_no}>
 								<div className="ImageWrapper">
-									<img
+									<img className="movieBanner"
 										src={movie.mov_posterURL}
 										alt={movie.mov_no}
 										key={movie.mov_no}
