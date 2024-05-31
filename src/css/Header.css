@@ -14,16 +14,7 @@ header {
 }
 .search-container{
 	width: 65%;
-	input{
-		width: auto;
-		min-width: 70%;
-		height: 40px;
-		border-radius: 5px;
-	}
-	Button{
-		margin-left: 10px;
-		height: 40px;
-	}
+
 }
 .user-container{
 	width: 20%;

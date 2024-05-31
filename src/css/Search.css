@@ -1,0 +1,12 @@
+.searchInput{
+    width: auto;
+    min-width: 70%;
+    height: 40px;
+    border-radius: 5px;
+}
+.searchBtn{
+    margin-left: 10px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #b0b6b7;
+}

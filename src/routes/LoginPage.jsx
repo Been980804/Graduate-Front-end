@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-export default function Login() {
+export default function LoginPage() {
 	const {
 		register,
 		handleSubmit,
@@ -11,8 +11,8 @@ export default function Login() {
 	} = useForm();
 	const navigate = useNavigate();
 
-	const onSubmit = (data) => {
-		axios({
+	const onSubmit = async (data) => {
+		await axios({
 			method: "post",
 			url: "http://localhost:8080/user/login",
 			withCredentials: true,

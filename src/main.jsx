@@ -2,23 +2,24 @@ import React from "react";
 import { CookiesProvider } from "react-cookie";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./components/Login.jsx";
 import Logout from "./components/Logout.jsx";
+
+import { loader as headerLoader } from "./components/Header.jsx";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
-import MovieDetails, {
-	loader as detailLoader,
-} from "./components/MovieDetails.jsx";
-import MyPage from "./components/MyPage.jsx";
-import SignUp from "./components/SignUp.jsx";
 import "./index.css";
+import DetailPage, { loader as detailLoader } from "./routes/DetailPage.jsx";
+import JoinPage from "./routes/JoinPage.jsx";
+import LoginPage from "./routes/LoginPage.jsx";
+import MyPage from "./routes/MyPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 
 const routes = createBrowserRouter([
 	{
 		path: "/",
 		element: <RouteLayout />,
+		loader: headerLoader,
 		children: [
 			{
 				path: "/",
@@ -27,12 +28,12 @@ const routes = createBrowserRouter([
 			},
 			{
 				path: "/details/:mov_id",
-				element: <MovieDetails />,
+				element: <DetailPage />,
 				loader: detailLoader,
 			},
 			{
 				path: "/login",
-				element: <Login />,
+				element: <LoginPage />,
 			},
 			{
 				path: "/logout",
@@ -40,7 +41,7 @@ const routes = createBrowserRouter([
 			},
 			{
 				path: "/join",
-				element: <SignUp />,
+				element: <JoinPage />,
 			},
 			{
 				path: "/mypage",

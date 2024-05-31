@@ -1,19 +1,20 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "../css/Header.css";
-// import Logout from "./Logout";
-import logo from "/src/assets/cinema-logo2-1.png";
+import Search from "./Search";
 import loginImg from "/src/assets/login.png";
 import logoutImg from "/src/assets/logout.png";
 import popcorn from "/src/assets/popcorn.png";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Header() {
 	const navigate = useNavigate();
 	const [login, setLogin] = useState({
 		isLogin: false,
+		mem_no: "",
 		mem_name: "",
 		mem_id: "",
 		mem_class: "",
@@ -28,6 +29,7 @@ export default function Header() {
 			if (response.data.common.res_code === 200) {
 				setLogin({
 					isLogin: true,
+					mem_no : response.data.data.mem_no,
 					mem_name: response.data.data.mem_name,
 					mem_id: response.data.data.mem_id,
 					mem_class: response.data.data.mem_class,
@@ -40,7 +42,7 @@ export default function Header() {
 		auth();
 	}, []);
 
-	const handleClick = () => {
+	const handleLogin = () => {
 		navigate("/login");
 	};
 	const handleLogout = () => {
@@ -56,8 +58,7 @@ export default function Header() {
 						</Link>
 					</div>
 					<div className="search-container">
-						<input></input>
-						<Button>Search</Button>
+						<Search />
 					</div>
 					<div className="user-container">
 						{login.isLogin && (
@@ -70,7 +71,7 @@ export default function Header() {
 							{login.isLogin ? (
 								<img src={logoutImg} onClick={handleLogout} className="loginImg"/>
 							) : (
-								<img src={loginImg} onClick={handleClick} className="loginImg"/>
+								<img src={loginImg} onClick={handleLogin} className="loginImg"/>
 							)}
 						</div>
 					</div>
@@ -78,4 +79,8 @@ export default function Header() {
 			</header>
 		</>
 	);
+}
+
+export async function loader() {
+	return null;
 }
