@@ -46,6 +46,7 @@ export default function LoginPage() {
 					{errors.pwd && <p>비밀번호를 입력하세요</p>}
 					<input type="submit" />
 				</form>
+					<a href="/join">회원가입</a>
 			</div>
 		</>
 	);
