@@ -3,6 +3,7 @@ import { CookiesProvider } from "react-cookie";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login.jsx";
+import Logout from "./components/Logout.jsx";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
 			{
 				path: "/login",
 				element: <Login />,
+			},
+			{
+				path: "/logout",
+				element: <Logout />,
 			},
 			{
 				path: "/join",
