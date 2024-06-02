@@ -1,0 +1,46 @@
+li{
+    list-style-type: none;
+    display: flex;
+}
+.test{
+    display: flex;
+}
+.info-wrapper{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;    
+}
+.info-box{
+    padding: 10px 100px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.userInfo{
+    font-size: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+.li-label{
+    width: 150px;
+    text-align: center;
+    align-self: center;
+    border: 1px solid #d7dde1;
+    background-color: #f7f8fa;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.li-p{
+    margin-top:15px;
+    border: 1px solid #d7dde1;
+    background-color: #f7f8fa;
+    text-align: center;
+    border-radius: 10px;
+    width: 400px;
+}
+.goModiBtn{
+    float: right;
+    border-radius: 5px;
+    border: 2px solid #787879;
+    background-color: #c7d6f3;
+}

@@ -1,12 +1,13 @@
 .review_form {
-    justify-content: center;
+  justify-content: center;
 }
 
 .review_body {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin-bottom: 50px;
+  margin-left: 200px;
 }
 
 .rating {
@@ -33,7 +34,9 @@
   font-size: 1.5rem;
   color: gold;
 }
-
+.review_content{
+  margin-top: 20px;
+}
 .review_content input {
   width: 700px;
   height: 40px;
@@ -47,32 +50,56 @@
 .review_buttonBox {
   display: flex;
   justify-content: center;
-  margin: 18px 0 0 20px ;
+  margin: 18px 0 0 20px;
 }
-.reviewBtn{
-    font-size: 20px;
-    width: 70px;
-    height: 40px;
-    background-color: #faffbfe9;
-    border-radius: 8px;
+.reviewBtn {
+  font-size: 20px;
+  width: 70px;
+  height: 40px;
+  background-color: #c7d6f3;
+  border-radius: 8px;
 }
-
-.reviewList{
-    display: flex;
-    justify-content: center;
-    margin : 30px 50px 30px 50px;
-    border: 1px solid black;
-    font-size: 20px;
+.reviewList {
+  justify-content: center;
+  margin: 30px 50px 30px 200px;
+  font-size: 20px;
 }
-.reviewContent{
-    width: 50%;
+.reviewItem{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.reviewUser{
-    width: 20%;
+.reviewUser {
+  width: 10%;
+  text-align: center;
 }
-.reviewDelete{
-    img{
-        width: 30px;
-        opacity: 0.5;
-    }
+.userName{
+  font-size: 25px;
+}
+.userId{
+  font-size: 16px;
+  color: rgb(166, 166, 166);
+}
+.review_box{
+  width: 90%;
+  height: 60px;
+  margin-left: 35px;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  background-color: rgb(255, 251, 255);
+}
+.reviewText {
+  width: 95%;
+  display: flex;
+  margin-left: 20px;
+  color: rgb(146, 56, 146);
+}
+.reviewDelete {
+  width: 5%;
+  justify-content: right;
+  img {
+    width: 30px;
+    opacity: 0.3;
+  }
 }

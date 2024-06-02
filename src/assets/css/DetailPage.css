@@ -18,7 +18,7 @@
 .introWrapper{
     color: rgb(255, 255, 255);
     position: relative;
-    min-height: 580px;
+    min-height: 620px;
     .title{
         width: 880px;
         font-size: 70px;
@@ -49,12 +49,10 @@
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 30);
 }
 .movieDetailWrapper{
-    border-top: 1px solid rgb(205, 205, 205);
     width: 100%;
-    margin-top: 50px;
+    margin-top: 80px;
     padding: 30px 200px;
     font-size: 25px;
-    display: table;
 }
 .detailInfo{
     font-size: 50px;
@@ -64,7 +62,7 @@
     text-align: center;
     position: absolute;
     left: 410px;
-    top: 940px;
+    top: 1010px;
     width: auto;
     padding: 3px;
 }
@@ -82,8 +80,22 @@
     margin: 10px 0 0 0px;
 }
 .reviewWrapper{
+    margin-top: 80px;
     padding-top: 30px;
     border-top: 1px solid rgb(205, 205, 205);
-    font-size: 40px;
-    text-align: center;
+    strong{
+        text-align: left; 
+        font-size: 50px;
+        margin-left: 200px;
+    }
+}
+.compareBtn{
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #c7d6f3;
+    top: 810px;
+    right: 280px;
+    border: none;
 }
