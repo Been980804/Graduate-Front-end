@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link, useLoaderData } from "react-router-dom";
@@ -22,7 +23,8 @@ export default function MovieCarousel() {
 						<Carousel.Item key={movie.mov_no}>
 							<Link to={`/details/${movie.mov_no}`} key={movie.mov_no}>
 								<div className="ImageWrapper">
-									<img className="movieBanner"
+									<img
+										className="movieBanner"
 										src={movie.mov_posterURL}
 										alt={movie.mov_no}
 										key={movie.mov_no}
@@ -37,7 +39,12 @@ export default function MovieCarousel() {
 }
 
 export async function loader() {
-	const response = await fetch("http://localhost:8080/main/posterURL");
-	const resData = await response.json();
-	return resData.data.posterURLList;
+	let res;
+	await axios({
+		url: "http://localhost:8080/main/screening",
+		method: "get",
+		withCredentials: true,
+	}).then((response) => (res = response.data.data.screeningList));
+
+	return res;
 }
