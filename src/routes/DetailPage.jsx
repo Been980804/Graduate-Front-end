@@ -27,11 +27,12 @@ export default function MovieDetails() {
                 src={movieData.mov_posterURL}
                 alt={movieData.mov_title}
               />
+              <button className="compareBtn">상영시간표 비교하기</button>
             </div>
           </div>
 
           <div className="movieDetailWrapper">
-			<strong className="detailInfo">상세정보</strong>
+			      <strong className="detailInfo">상세정보</strong>
             <div className={`status ${movieData.mov_state === 1 ? 'screening' : 'toBeScreen'}`}>
               {movieData.mov_state === 1 ? "상영중" : "개봉예정"}
               {movieData.mov_state === 1 ? null : " (" + movieData.mov_dday + ")"}
@@ -44,7 +45,7 @@ export default function MovieDetails() {
           </div>
 
 		  <div className="reviewWrapper">
-        <strong>리뷰 작성</strong>
+        <strong>관람평</strong>
 			  <Review mov_no={movieData.mov_no} onSubmit={handleReviewSubmit}/> {/*mem_no 들어가야함 */}
 		  </div>
         </div>
