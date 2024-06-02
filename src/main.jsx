@@ -9,12 +9,14 @@ import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
 import "./index.css";
+import ComparePage, { loader as compareLoader } from "./routes/ComparePage.jsx";
 import DetailPage, { loader as detailLoader } from "./routes/DetailPage.jsx";
 import InfoPage, { loader as infoLoader } from "./routes/InfoPage.jsx";
 import JoinPage from "./routes/JoinPage.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
 import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
+import SearchPage from "./routes/SearchPage.jsx";
 const routes = createBrowserRouter([
 	{
 		path: "/",
@@ -42,6 +44,15 @@ const routes = createBrowserRouter([
 			{
 				path: "/join",
 				element: <JoinPage />,
+			},
+			{
+				path: "/search",
+				element: <SearchPage />,
+			},
+			{
+				path: "/schedule/:mov_no",
+				element: <ComparePage />,
+				loader: compareLoader,
 			},
 			{
 				path: "/info",
