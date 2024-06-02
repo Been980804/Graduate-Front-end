@@ -78,7 +78,7 @@ export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
         {/* for문 돌려서 모든 리뷰 출력 */}
         <div className="reviewUser">
           <div className="userName">회원명</div>
-          <div className="userId">회원</div>
+          <div className="userId">회원아이디</div>
         </div>
         <div className="reviewContent">
           <div className="reviewText">리뷰내용 출력(별점, 내용)</div>
