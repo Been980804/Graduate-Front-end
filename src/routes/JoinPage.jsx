@@ -1,7 +1,6 @@
 // http://localhost:8080/user/join
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { isEqualsToOtherValue } from "../utils/validation";
 export default function JoinPage() {
 	const {
 		register,
@@ -11,21 +10,19 @@ export default function JoinPage() {
 	} = useForm();
 
 	async function handleJoin(data) {
-		if (isEqualsToOtherValue(data.pwd, data.pwd_confirm)) {
-			await axios({
-				method: "post",
-				url: "http://localhost:8080/user/signup",
-				withCredentials: true,
-				data: {
-					mem_name: data.name,
-					mem_id: data.id,
-					mem_pwd: data.pwd,
-					mem_phone: data.phone,
-					mem_birth: data.birth,
-					mem_email: data.email,
-				},
-			}).then((response) => {});
-		}
+		await axios({
+			method: "post",
+			url: "http://localhost:8080/user/signup",
+			withCredentials: true,
+			data: {
+				mem_name: data.name,
+				mem_id: data.id,
+				mem_pwd: data.pwd,
+				mem_phone: data.phone,
+				mem_birth: data.birth,
+				mem_email: data.email,
+			},
+		}).then((response) => {});
 	}
 	return (
 		<>

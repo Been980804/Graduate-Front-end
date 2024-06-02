@@ -1,95 +1,39 @@
-import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import "../assets/css/Header.css";
-import Search from "./Search";
-import loginImg from "/src/assets/images/login.png";
-import logoutImg from "/src/assets/images/logout.png";
-import popcorn from "/src/assets/images/popcorn.png";
-
+import Login from "./Login.jsx";
+import Logout from "./Logout.jsx";
 export default function Header() {
-	const navigate = useNavigate();
-	const [login, setLogin] = useState({
-		isLogin: false,
+	const [show, setShow] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState({
 		mem_no: "",
-		mem_name: "",
 		mem_id: "",
+		mem_name: "",
 		mem_class: "",
+		auth: false,
 	});
-	const auth = async () => {
-		await axios({
-			method: "get",
-			url: "http://localhost:8080/user/auth",
-			data: {},
-			withCredentials: true,
-		}).then((response) => {
-			if (response.data.common.res_code === 200) {
-				setLogin({
-					isLogin: true,
-					mem_no: response.data.data.mem_no,
-					mem_name: response.data.data.mem_name,
-					mem_id: response.data.data.mem_id,
-					mem_class: response.data.data.mem_class,
-				});
-			}
-		});
-	};
 
-	useEffect(() => {
-		auth();
-	}, []);
-
-	const handleLogin = () => {
-		navigate("/login");
-	};
-	const handleLogout = () => {
-		navigate("/logout");
-	};
+	function handleClose() {
+		setLoading(false);
+		setShow(false);
+	}
+	function handleShow() {
+		setLoading(true);
+		setShow(true);
+	}
 	return (
-		<>
-			<header>
-				<div className="header-container">
-					<div className="logo-container">
-						<Link to={"/"}>
-							<img src={logo} alt="logo" className="logoImg" />
-						</Link>
-					</div>
-					<div className="search-container">
-						<Search />
-					</div>
-					<div className="user-container">
-						{login.isLogin && (
-							<Link to={"/info"}>
-								<div className="user_name">
-									<img src={popcorn} />
-									{login.mem_name}
-								</div>
-							</Link>
-						)}
-						<div>
-							{login.isLogin ? (
-								<img
-									src={logoutImg}
-									onClick={handleLogout}
-									className="loginImg"
-								/>
-							) : (
-								<img
-									src={loginImg}
-									onClick={handleLogin}
-									className="loginImg"
-								/>
-							)}
-						</div>
-					</div>
-				</div>
-			</header>
-		</>
-	);
-}
+		<div>
+			<div>
+				<Button variant="primary" onClick={handleShow}>
+					Login
+				</Button>
 
-export async function loader() {
-	return null;
+				<Button variant="secondary" onClick={Logout}>
+					Logout
+				</Button>
+			</div>
+			<Login show={show} onHide={handleClose} />
+		</div>
+	);
 }

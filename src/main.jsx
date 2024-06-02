@@ -1,10 +1,8 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { CookiesProvider } from "react-cookie";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Logout from "./components/Logout.jsx";
-
-import { loader as headerLoader } from "./components/Header.jsx";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
@@ -21,7 +19,6 @@ const routes = createBrowserRouter([
 	{
 		path: "/",
 		element: <RouteLayout />,
-		loader: headerLoader,
 		children: [
 			{
 				path: "/",
@@ -68,10 +65,9 @@ const routes = createBrowserRouter([
 		],
 	},
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<CookiesProvider>
-			<RouterProvider router={routes} />
-		</CookiesProvider>
+		<RouterProvider router={routes} />
 	</React.StrictMode>
 );

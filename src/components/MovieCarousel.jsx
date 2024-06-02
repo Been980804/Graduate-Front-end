@@ -7,7 +7,6 @@ import "../assets/css/MovieCarousel.css";
 export default function MovieCarousel() {
 	const [index, setIndex] = useState(0);
 	const movies = useLoaderData();
-	console.log(movies);
 	function handleSelect(selectedIndex) {
 		setIndex(selectedIndex);
 	}

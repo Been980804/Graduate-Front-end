@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function LoginPage() {
 	const {
@@ -11,7 +12,7 @@ export default function LoginPage() {
 		formState: { errors },
 	} = useForm();
 	const navigate = useNavigate();
-	const [isLogin, setIsLogin] = useState(false);
+	const { userState, setUserState, isAuth } = useContext(AuthContext);
 
 	// 로그인 처리 로직
 	const handleLogin = async (data) => {
@@ -26,6 +27,8 @@ export default function LoginPage() {
 		}).then((response) => {
 			if (response.status === 200) {
 				if (response.data.common.res_code === 200) {
+					isAuth();
+					console.log(userState);
 					navigate("/");
 				} else {
 					alert("ID 혹은 비밀번호가 일치하지 않습니다.");
@@ -49,7 +52,7 @@ export default function LoginPage() {
 					{errors.pwd && <p>비밀번호를 입력하세요</p>}
 					<input type="submit" />
 				</form>
-					<a href="/join">회원가입</a>
+				<a href="/join">회원가입</a>
 			</div>
 		</>
 	);
