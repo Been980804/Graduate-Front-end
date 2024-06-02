@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import "../assets/css/DetailPage.css";
-import Review from '.././components/Review';  // 새롭게 추가된 컴포넌트 import
+import Review from '.././components/Review';
 
 export default function MovieDetails() {  
   const movieData = useLoaderData();
@@ -45,7 +45,7 @@ export default function MovieDetails() {
 
 		  <div className="reviewWrapper">
         <strong>리뷰 작성</strong>
-			  <Review mov_no={movieData.mov_no} mem_no={mem_no} onSubmit={handleReviewSubmit}/>
+			  <Review mov_no={movieData.mov_no} onSubmit={handleReviewSubmit}/> {/*mem_no 들어가야함 */}
 		  </div>
         </div>
       </div>

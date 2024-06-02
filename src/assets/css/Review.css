@@ -57,3 +57,22 @@
     border-radius: 8px;
 }
 
+.reviewList{
+    display: flex;
+    justify-content: center;
+    margin : 30px 50px 30px 50px;
+    border: 1px solid black;
+    font-size: 20px;
+}
+.reviewContent{
+    width: 50%;
+}
+.reviewUser{
+    width: 20%;
+}
+.reviewDelete{
+    img{
+        width: 30px;
+        opacity: 0.5;
+    }
+}

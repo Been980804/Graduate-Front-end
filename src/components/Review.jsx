@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/Review.css";
 import axios from "axios";
+import basket from "/src/assets/images/basket.png";
 
 export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
   const [score, setScore] = useState(0);
@@ -72,6 +73,17 @@ export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
             확인
           </button>
         </div>
+      </div>
+      <div className="reviewList">
+        {/* for문 돌려서 모든 리뷰 출력 */}
+        <div className="reviewContent">
+            리뷰내용 출력(별점, 내용)리뷰내용 출력(별점, 내용)리뷰내용 출력(별점, 내용)
+        </div>
+        <div className="reviewUser">
+            회원명
+        </div>
+        {/* 관리자 or 자기가 작성한 글일 경우 보임 */}
+        <div className="reviewDelete"><img src={basket}/></div>
       </div>
     </div>
   );
