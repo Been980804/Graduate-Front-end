@@ -86,7 +86,7 @@ export default function ReviewForm({ ...reviewList }) {
                   </div>
                   <div className="review_box">
                     <div className="reviewText">
-                      <div className="reviewRating">{review.rev_rating}</div>
+                      <div className="reviewRating">별점 : {review.rev_rating}</div>
                       <div className="reviewContent">{review.rev_content}</div>
                     </div>
                   <div className="reviewDelete">
