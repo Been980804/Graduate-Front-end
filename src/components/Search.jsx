@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import "../css/Search.css";
+import "../assets/css/Search.css";
 
 export default function Search() {
 	const {

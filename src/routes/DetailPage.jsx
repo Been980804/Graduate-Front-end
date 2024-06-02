@@ -1,9 +1,15 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import "../css/DetailPage.css";
+import "../assets/css/DetailPage.css";
+import Review from '.././components/Review';  // 새롭게 추가된 컴포넌트 import
 
-export default function MovieDetails() {
+export default function MovieDetails() {  
   const movieData = useLoaderData();
+  // const mem_no =  'mem0000001'; // 추후 수정 (현재 로그인한 회원의 mem_no)
+
+  function handleReviewSubmit(){
+    console.log("리뷰 작성 완료:", reviewData);
+  }
   return (
     <>
       <div className="detail_container">
@@ -38,7 +44,8 @@ export default function MovieDetails() {
           </div>
 
 		  <div className="reviewWrapper">
-			리뷰부분
+        <strong>리뷰 작성</strong>
+			  <Review mov_no={movieData.mov_no} mem_no={mem_no} onSubmit={handleReviewSubmit}/>
 		  </div>
         </div>
       </div>

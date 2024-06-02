@@ -2,12 +2,12 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
-import "../css/Header.css";
+import logo from "../assets/images/logo.png";
+import "../assets/css/Header.css";
 import Search from "./Search";
-import loginImg from "/src/assets/login.png";
-import logoutImg from "/src/assets/logout.png";
-import popcorn from "/src/assets/popcorn.png";
+import loginImg from "/src/assets/images/login.png";
+import logoutImg from "/src/assets/images/logout.png";
+import popcorn from "/src/assets/images/popcorn.png";
 
 export default function Header() {
 	const navigate = useNavigate();

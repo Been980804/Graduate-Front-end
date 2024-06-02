@@ -21,6 +21,18 @@ header {
 	display: flex;
 	justify-content: right;
 	padding-right: 20px;
+	a{
+		text-decoration-line: none;
+	}
+	a:link{
+		color: white;
+	}
+	a:visited {
+		color : white;
+	  }
+	  a:hover{
+		color: pink;
+	  }
 }
 .logoImg{
 	width: 100%;
