@@ -1,7 +1,8 @@
-// http://localhost:8080/user/login
 import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
 export default function LoginPage() {
 	const {
 		register,
@@ -10,11 +11,13 @@ export default function LoginPage() {
 		formState: { errors },
 	} = useForm();
 	const navigate = useNavigate();
+	const [isLogin, setIsLogin] = useState(false);
 
-	const onSubmit = async (data) => {
+	// 로그인 처리 로직
+	const handleLogin = async (data) => {
 		await axios({
-			method: "post",
 			url: "http://localhost:8080/user/login",
+			method: "post",
 			withCredentials: true,
 			data: {
 				mem_id: data.mem_id,
@@ -28,7 +31,7 @@ export default function LoginPage() {
 					alert("ID 혹은 비밀번호가 일치하지 않습니다.");
 				}
 			} else {
-				return;
+				alert(response.status);
 			}
 		});
 	};
@@ -36,7 +39,7 @@ export default function LoginPage() {
 	return (
 		<>
 			<div>
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleSubmit(handleLogin)}>
 					<h2>Login</h2>
 					<label>ID</label>
 					<input {...register("mem_id", { required: true })} />

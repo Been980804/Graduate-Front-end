@@ -10,11 +10,11 @@ import MovieCarousel, {
 } from "./components/MovieCarousel.jsx";
 import "./index.css";
 import DetailPage, { loader as detailLoader } from "./routes/DetailPage.jsx";
+import InfoPage, { loader as infoLoader } from "./routes/InfoPage.jsx";
 import JoinPage from "./routes/JoinPage.jsx";
 import LoginPage from "./routes/LoginPage.jsx";
-import MyPage from "./routes/MyPage.jsx";
+import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
-
 const routes = createBrowserRouter([
 	{
 		path: "/",
@@ -44,8 +44,15 @@ const routes = createBrowserRouter([
 				element: <JoinPage />,
 			},
 			{
-				path: "/mypage",
-				element: <MyPage />,
+				path: "/info",
+				element: <InfoPage />,
+				loader: infoLoader,
+				children: [
+					{
+						path: "/info/mod",
+						element: <ModInfoPage />,
+					},
+				],
 			},
 		],
 	},

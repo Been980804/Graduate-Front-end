@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export default async function auth() {
+export default async function auth(method, url, data) {
 	let res;
 	await axios({
-		method: "get",
-		url: "http://localhost:8080/user/auth",
+		method: method,
+		url: "http://localhost:8080" + url,
 		withCredentials: true,
-		data: {},
+		data: { ...data },
 	}).then((response) => {
 		res = response;
 	});
