@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import "../css/DetailPage.css";
+import "../assets/css/DetailPage.css";
 
 export default function MovieDetails() {
   const movieData = useLoaderData();

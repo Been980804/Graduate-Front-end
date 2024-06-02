@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link, useLoaderData } from "react-router-dom";
-import "../css/MovieCarousel.css";
+import "../assets/css/MovieCarousel.css";
 
 export default function MovieCarousel() {
 	const [index, setIndex] = useState(0);
