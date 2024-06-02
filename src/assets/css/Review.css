@@ -1,5 +1,5 @@
 .review_form {
-    justify-content: center;
+  justify-content: center;
 }
 
 .review_body {
@@ -47,32 +47,45 @@
 .review_buttonBox {
   display: flex;
   justify-content: center;
-  margin: 18px 0 0 20px ;
+  margin: 18px 0 0 20px;
 }
-.reviewBtn{
-    font-size: 20px;
-    width: 70px;
-    height: 40px;
-    background-color: #faffbfe9;
-    border-radius: 8px;
+.reviewBtn {
+  font-size: 20px;
+  width: 70px;
+  height: 40px;
+  background-color: #faffbfe9;
+  border-radius: 8px;
 }
 
-.reviewList{
-    display: flex;
-    justify-content: center;
-    margin : 30px 50px 30px 50px;
-    border: 1px solid black;
-    font-size: 20px;
+.reviewList {
+  display: flex;
+  justify-content: center;
+  margin: 30px 50px 30px 50px;
+  font-size: 20px;
+}
+.reviewUser {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
 }
 .reviewContent{
-    width: 50%;
+  width: 85%;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  background-color: rgb(255, 251, 255);
 }
-.reviewUser{
-    width: 20%;
+.reviewText {
+  width: 90%;
+  display: flex;
+  margin-left: 15px;
+  color: rgb(146, 56, 146);
 }
-.reviewDelete{
-    img{
-        width: 30px;
-        opacity: 0.5;
-    }
+.reviewDelete {
+  width: 10%;
+  justify-content: right;
+  img {
+    width: 30px;
+    opacity: 0.3;
+  }
 }
