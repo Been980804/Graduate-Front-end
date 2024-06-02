@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+.wrapper{
+    justify-content: center;
+    font-family: 'Noto Sans KR';
+}
+.movieInfoWrapper{
+    padding: 10px;
+    background-color: rgb(76, 76, 76);
+    box-shadow: 0 0 15px 15px rgb(0, 0, 0, 0.3) inset;
+}
+.PosterWrapper{
+    display: flex;
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 20px 180px 20px 180px;
+}
+.introWrapper{
+    color: rgb(255, 255, 255);
+    position: relative;
+    min-height: 580px;
+    .title{
+        width: 880px;
+        font-size: 70px;
+        margin-top: 20px;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); 
+    }
+    .titleEng{
+        font-size: 30px;
+        padding-left: 10px;
+    }
+    .like{
+        margin-top: 20px;
+        padding-left: 10px;        
+    }
+    .intro{
+        font-size: 17px;
+        position: absolute;
+        width: 600px;
+        bottom: 0;
+    }
+}
+.poster{
+    position: absolute;
+    width: 410px;
+    top:200px;
+    right: 130px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 30);
+}
+.movieDetailWrapper{
+    border-top: 1px solid rgb(205, 205, 205);
+    width: 100%;
+    margin-top: 50px;
+    padding: 30px 200px;
+    font-size: 25px;
+    display: table;
+}
+.detailInfo{
+    font-size: 50px;
+}
+.status{
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    left: 410px;
+    top: 940px;
+    width: auto;
+    padding: 3px;
+}
+.screening{
+    color: #3e82a4;
+    border: 2px solid #3e82a4;
+    border-radius: 5px;
+}
+.toBeScreen{
+    color: #a16423;
+    border: 2px solid #a16423;
+    border-radius: 5px;
+}
+.etcInfo{
+    margin: 10px 0 0 0px;
+}
+.reviewWrapper{
+    padding-top: 30px;
+    border-top: 1px solid rgb(205, 205, 205);
+    font-size: 40px;
+    text-align: center;
+}
