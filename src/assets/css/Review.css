@@ -1,0 +1,59 @@
+.review_form {
+    justify-content: center;
+}
+
+.review_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.rating {
+  display: flex;
+  margin-top: 15px;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.before_click {
+  color: #ddd;
+}
+
+.after_click {
+  color: gold;
+}
+
+.starCnt {
+  margin-left: 10px;
+  margin-right: 30px;
+  font-size: 1.5rem;
+  color: gold;
+}
+
+.review_content input {
+  width: 700px;
+  height: 40px;
+  border: 1px solid #d6dce1;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.review_buttonBox {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 0 20px ;
+}
+.reviewBtn{
+    font-size: 20px;
+    width: 70px;
+    height: 40px;
+    background-color: #faffbfe9;
+    border-radius: 8px;
+}
+
