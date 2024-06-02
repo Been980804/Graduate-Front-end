@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
 				loader: movieLoader,
 			},
 			{
-				path: "/details/:mov_id",
+				path: "/details/:mov_no",
 				element: <DetailPage />,
 				loader: detailLoader,
 			},

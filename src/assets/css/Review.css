@@ -59,26 +59,30 @@
   background-color: #c7d6f3;
   border-radius: 8px;
 }
-
 .reviewList {
-  display: flex;
   justify-content: center;
   margin: 30px 50px 30px 200px;
   font-size: 20px;
 }
+.reviewItem{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 .reviewUser {
   width: 10%;
-  display: flex;
-  flex-direction: column;
+  text-align: center;
 }
 .userName{
-  padding-left: 30px;
+  font-size: 25px;
 }
 .userId{
-  padding-left: 15px;
+  font-size: 16px;
+  color: rgb(166, 166, 166);
 }
-.reviewContent{
+.review_box{
   width: 90%;
+  height: 60px;
   margin-left: 35px;
   display: flex;
   border-radius: 5px;

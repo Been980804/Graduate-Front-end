@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "../assets/css/Review.css";
-import axios from "axios";
-import basket from "/src/assets/images/basket.png";
-
-export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
+import basket from "../assets/images/basket.png";
+export default function ReviewForm({ ...reviewList }) {
   const [score, setScore] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
 
@@ -43,7 +41,8 @@ export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
     setScore(0);
     setReviewContent("");
   };
-
+  const reviews = reviewList.reviewList;
+  console.log(reviews);
   return (
     <div className="review_form">
       <div className="review_body">
@@ -76,17 +75,28 @@ export default function ReviewForm({ mov_no, mem_no, onSubmit }) {
       </div>
       <div className="reviewList">
         {/* for문 돌려서 모든 리뷰 출력 */}
-        <div className="reviewUser">
-          <div className="userName">회원명</div>
-          <div className="userId">회원아이디</div>
-        </div>
-        <div className="reviewContent">
-          <div className="reviewText">리뷰내용 출력(별점, 내용)</div>
-          {/* 관리자 or 자기가 작성한 글일 경우 보임 */}
-          <div className="reviewDelete">
-            <img src={basket} />
-          </div>
-        </div>
+        {reviews &&
+          reviews.map((review) => {
+            return (
+              <>
+                <div className="reviewItem">
+                  <div className="reviewUser">
+                    <div className="userName">{review.mem_name}</div>
+                    <div className="userId">{review.mem_id}</div>
+                  </div>
+                  <div className="review_box">
+                    <div className="reviewText">
+                      <div className="reviewRating">{review.rev_rating}</div>
+                      <div className="reviewContent">{review.rev_content}</div>
+                    </div>
+                  <div className="reviewDelete">
+                    <img src={basket} />
+                  </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
       </div>
     </div>
   );
