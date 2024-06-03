@@ -52,3 +52,7 @@ header {
 	width: 50px;
 	cursor: pointer;
 }
+.loginBtn{
+	background-color: #1F1F1F;
+	border: 0;
+}
