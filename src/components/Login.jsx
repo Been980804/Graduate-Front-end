@@ -2,6 +2,8 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import id from "/src/assets/images/profile.png";
+import pwd from "/src/assets/images/password.png";
 
 import { useForm } from "react-hook-form";
 
@@ -41,7 +43,7 @@ export default function Login({ show, onHide }) {
 			</Modal.Header>
 			<Modal.Body>
 				<Form.Group>
-					<Form.Label>ID</Form.Label>
+					<Form.Label><img src={id} style={{width:'25px' ,margin: '0 0 0 5px'}}/></Form.Label>
 					<Form.Control
 						placeholder="ID"
 						autoFocus
@@ -49,7 +51,7 @@ export default function Login({ show, onHide }) {
 					/>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label>Password</Form.Label>
+					<Form.Label><img src={pwd} style={{width:'25px' ,margin: '10px 0 0 5px'}}/></Form.Label>
 					<Form.Control
 						type="password"
 						placeholder="Password"
@@ -59,10 +61,10 @@ export default function Login({ show, onHide }) {
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="secondary" onClick={onHide}>
-					Join
+					회원가입
 				</Button>
 				<Button variant="primary" onClick={handleSubmit(handleLogin)}>
-					Login
+					로그인
 				</Button>
 			</Modal.Footer>
 		</Modal>
