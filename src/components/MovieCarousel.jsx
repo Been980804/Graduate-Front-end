@@ -83,7 +83,7 @@ export default function MovieCarousel() {
                   <span
                     className="rank"
                     style={{
-                      backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.9) 100%),
+                      backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0.9) 100%),
 				   url(${toBeScreened.mov_posterURL})`,
                     }}
                   >

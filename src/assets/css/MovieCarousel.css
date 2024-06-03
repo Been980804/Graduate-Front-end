@@ -22,7 +22,7 @@
 .movie_grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
+  /* gap: 8px; */
   background-color: rgb(255, 252, 254);
   margin: 20px 0;
   padding: 30px;
@@ -47,12 +47,12 @@
   }
 .rank{
 	display: flex;
-	width: 170px;
-	height: 234px;
+	width: 230px;
+	height: 317px;
 	text-align: left;
-	font-size: 40px;
+	font-size: 50px;
 	color: white;
-	padding: 180px 0 0 7px;
+	padding: 250px 0 0 7px;
 	border-radius: 10px;
 	background-size: 100% 100%;
 }
