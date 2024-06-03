@@ -2,13 +2,16 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import id from "/src/assets/images/profile.png";
 import pwd from "/src/assets/images/password.png";
+import id from "/src/assets/images/profile.png";
 
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ show, onHide }) {
 	const { register, handleSubmit } = useForm();
+	const navigate = useNavigate();
+
 	async function handleLogin(data) {
 		await axios({
 			method: "post",
@@ -25,6 +28,8 @@ export default function Login({ show, onHide }) {
 			.then((result) => {
 				if (result.common.res_code === 200) {
 					alert("환영합니다.");
+					localStorage.setItem("isAuth", true);
+					navigate("/");
 				} else {
 					alert("ID 혹은 PW가 일치하지 않습니다.");
 				}
@@ -43,7 +48,9 @@ export default function Login({ show, onHide }) {
 			</Modal.Header>
 			<Modal.Body>
 				<Form.Group>
-					<Form.Label><img src={id} style={{width:'25px' ,margin: '0 0 0 5px'}}/></Form.Label>
+					<Form.Label>
+						<img src={id} style={{ width: "25px", margin: "0 0 0 5px" }} />
+					</Form.Label>
 					<Form.Control
 						placeholder="ID"
 						autoFocus
@@ -51,7 +58,9 @@ export default function Login({ show, onHide }) {
 					/>
 				</Form.Group>
 				<Form.Group>
-					<Form.Label><img src={pwd} style={{width:'25px' ,margin: '10px 0 0 5px'}}/></Form.Label>
+					<Form.Label>
+						<img src={pwd} style={{ width: "25px", margin: "10px 0 0 5px" }} />
+					</Form.Label>
 					<Form.Control
 						type="password"
 						placeholder="Password"

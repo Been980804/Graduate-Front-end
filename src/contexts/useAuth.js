@@ -32,10 +32,6 @@ export default function useAuth() {
 							mem_class: userInfo.mem_class,
 							mem_id: userInfo.mem_id,
 						});
-					} else {
-						setUser({
-							isLogin: false,
-						});
 					}
 				});
 		}
