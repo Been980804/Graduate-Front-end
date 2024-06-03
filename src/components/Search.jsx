@@ -13,9 +13,10 @@ export default function Search() {
 	const navigate = useNavigate();
 
 	async function handleSearch(data) {
+		const searchTitle = data.title || "all";
 		await axios({
 			method: "get",
-			url: "http://localhost:8080/common/search/" + data.title,
+			url: `http://localhost:8080/common/search/${searchTitle}`,
 			withCredentials: true,
 		})
 			.then((response) => {
@@ -33,7 +34,7 @@ export default function Search() {
 			<form onSubmit={handleSubmit(handleSearch)}>
 				<input
 					className="searchInput"
-					{...register("title", { required: true })}
+					{...register("title", { required: false })}
 				/>
 				<button type="submit" className="searchBtn">
 					Search

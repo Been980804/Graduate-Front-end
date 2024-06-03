@@ -11,7 +11,6 @@ import ComparePage, { loader as compareLoader } from "./routes/ComparePage.jsx";
 import DetailPage, { loader as detailLoader } from "./routes/DetailPage.jsx";
 import InfoPage, { loader as infoLoader } from "./routes/InfoPage.jsx";
 import JoinPage from "./routes/JoinPage.jsx";
-import LoginPage from "./routes/LoginPage.jsx";
 import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 import SearchPage from "./routes/SearchPage.jsx";
@@ -29,10 +28,6 @@ const routes = createBrowserRouter([
 				path: "/details/:mov_no",
 				element: <DetailPage />,
 				loader: detailLoader,
-			},
-			{
-				path: "/login",
-				element: <LoginPage />,
 			},
 			{
 				path: "/logout",
