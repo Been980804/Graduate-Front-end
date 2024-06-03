@@ -1,17 +1,58 @@
 .movieBanner {
-	width: 30%;
-	z-index: 1;
+  width: 30%;
+  z-index: 1;
 }
 .MovieWrapper {
-	align-items: center;
+  align-items: center;
 }
-.ImageWrapper{
-	display: flex;
-	justify-content: center;
-	position: relative;
+.ImageWrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 .ItemWrapper {
-    background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%);
-	position: relative;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  position: relative;
 }
-
+.movie_grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* gap: 8px; */
+  background-color: rgb(255, 252, 254);
+  margin: 20px 0;
+  padding: 30px;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img {
+    width: 180px;
+    height: auto;
+	border-radius: 10px;
+  }
+}
+.movie_grid a {
+	text-decoration: none; 
+	color: inherit; 
+  }
+  
+  .movie_grid a:hover {
+	text-decoration: none; 
+  }
+.rank{
+	display: flex;
+	width: 230px;
+	height: 317px;
+	text-align: left;
+	font-size: 50px;
+	color: white;
+	padding: 250px 0 0 7px;
+	border-radius: 10px;
+	background-size: 100% 100%;
+}

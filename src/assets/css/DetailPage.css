@@ -1,101 +1,119 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap");
 
-.wrapper{
-    justify-content: center;
-    font-family: 'Noto Sans KR';
+.wrapper {
+  justify-content: center;
+  font-family: "Noto Sans KR";
 }
-.movieInfoWrapper{
-    padding: 10px;
-    background-color: rgb(76, 76, 76);
-    box-shadow: 0 0 15px 15px rgb(0, 0, 0, 0.3) inset;
+.movieInfoWrapper {
+  padding: 10px;
+  background-color: rgb(76, 76, 76);
+  box-shadow: 0 0 15px 15px rgb(0, 0, 0, 0.3) inset;
 }
-.PosterWrapper{
-    display: flex;
-    width: 100%;
-    margin-bottom: 50px;
-    padding: 20px 180px 20px 180px;
+.PosterWrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 20px 180px 20px 180px;
 }
-.introWrapper{
-    color: rgb(255, 255, 255);
-    position: relative;
-    min-height: 620px;
-    .title{
-        width: 880px;
-        font-size: 70px;
-        margin-top: 20px;
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); 
-    }
-    .titleEng{
-        font-size: 30px;
-        padding-left: 10px;
-    }
-    .like{
-        margin-top: 20px;
-        padding-left: 10px;        
-    }
-    .intro{
-        font-size: 17px;
-        position: absolute;
-        width: 600px;
-        bottom: 0;
-    }
-}
-.poster{
+.introWrapper {
+  color: rgb(255, 255, 255);
+  position: relative;
+  min-height: 620px;
+  .title {
+    width: 880px;
+    font-size: 70px;
+    margin-top: 20px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  .titleEng {
+    font-size: 30px;
+    padding-left: 10px;
+  }
+  .like {
+    margin-top: 20px;
+    padding-left: 10px;
+  }
+  .intro {
+    font-size: 17px;
     position: absolute;
-    width: 410px;
-    top:200px;
-    right: 130px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 30);
+    width: 600px;
+    bottom: 0;
+  }
 }
-.movieDetailWrapper{
-    width: 100%;
-    margin-top: 80px;
-    padding: 30px 200px;
-    font-size: 25px;
+.poster {
+  position: absolute;
+  width: 410px;
+  top: 200px;
+  right: 130px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 30);
 }
-.detailInfo{
+.movieDetailWrapper {
+  width: 100%;
+  margin-top: 80px;
+  padding: 30px 200px;
+  font-size: 25px;
+}
+.detailInfo {
+  font-size: 50px;
+}
+.status {
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  left: 410px;
+  top: 1010px;
+  width: auto;
+  padding: 3px;
+}
+.screening {
+  color: #3e82a4;
+  border: 2px solid #3e82a4;
+  border-radius: 5px;
+}
+.toBeScreen {
+  color: #a16423;
+  border: 2px solid #a16423;
+  border-radius: 5px;
+}
+.etcInfo {
+  margin: 10px 0 0 0px;
+}
+.reviewWrapper {
+  margin-top: 80px;
+  padding-top: 30px;
+  border-top: 1px solid rgb(205, 205, 205);
+  strong {
+    text-align: left;
     font-size: 50px;
+    margin-left: 200px;
+  }
 }
-.status{
-    font-size: 20px;
-    text-align: center;
-    position: absolute;
-    left: 410px;
-    top: 1010px;
-    width: auto;
-    padding: 3px;
+.compareBtn {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #c7d6f3;
+  top: 810px;
+  right: 280px;
+  border: none;
 }
-.screening{
-    color: #3e82a4;
-    border: 2px solid #3e82a4;
-    border-radius: 5px;
+
+.like-container {
+  display: inline-block;
 }
-.toBeScreen{
-    color: #a16423;
-    border: 2px solid #a16423;
-    border-radius: 5px;
+
+.like-container input[type="checkbox"] {
+  display: none;
 }
-.etcInfo{
-    margin: 10px 0 0 0px;
+
+.like-container label {
+  cursor: pointer;
+  font-size: 40px;
+  margin-left: 10px;
 }
-.reviewWrapper{
-    margin-top: 80px;
-    padding-top: 30px;
-    border-top: 1px solid rgb(205, 205, 205);
-    strong{
-        text-align: left; 
-        font-size: 50px;
-        margin-left: 200px;
-    }
-}
-.compareBtn{
-    position: absolute;
-    width: 100px;
-    height: 50px;
-    border-radius: 5px;
-    background-color: #c7d6f3;
-    top: 810px;
-    right: 280px;
-    border: none;
+
+.like-container label.liked {
+  color: rgb(255, 211, 211);
 }

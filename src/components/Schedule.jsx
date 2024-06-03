@@ -10,7 +10,7 @@ export default function Schedule({ schedules, th_brand }) {
 								<div className="hall-name">{schedule.hall_name}</div>
 								<div className="start">{schedule.sch_start}</div>
 								<div className="end">{schedule.sch_end}</div>
-								<div className="seats">잔여 좌석: {schedule.hall_seats}석</div>
+								<div className="seats">좌석수: {schedule.hall_seats}석</div>
 							</li>
 						);
 					}

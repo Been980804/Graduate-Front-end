@@ -42,7 +42,6 @@ export default function ComparePage() {
             <div className="introWrapper">
               <h2 className="title">{movieInfo.mov_title}</h2>
               <h3 className="titleEng">{movieInfo.mov_titleEng}</h3>
-              <div className="like">좋아요들어갈 부분</div>
               <div className="intro">{movieInfo.mov_intro}</div>
             </div>
           </div>

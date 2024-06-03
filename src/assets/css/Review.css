@@ -38,7 +38,7 @@
   margin-top: 20px;
 }
 .review_content input {
-  width: 700px;
+  width: 1160px;
   height: 40px;
   border: 1px solid #d6dce1;
   border-radius: 5px;
@@ -96,7 +96,7 @@
   background-color: rgb(255, 251, 255);
 }
 .reviewText {
-  width: 95%;
+  width: 80%;
   display: flex;
   margin-left: 20px;
   color: rgb(146, 56, 146);
@@ -108,9 +108,15 @@
 .reviewContent{
   padding-left: 30px;
 }
+.reviewDate{
+  width: 15%;
+  font-size: 15px;
+  opacity: 0.3;
+  user-select: none;
+}
 .reviewDelete {
-  width: 5%;
   justify-content: right;
+  cursor: pointer;
   img {
     width: 30px;
     opacity: 0.3;

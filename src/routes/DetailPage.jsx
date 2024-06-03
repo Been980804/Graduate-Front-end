@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import "../assets/css/DetailPage.css";
 import Review from "../components/Review.jsx";
@@ -8,6 +8,8 @@ export default function MovieDetails() {
   const movieData = response.movieData;
   const reviewData = response.reviewData;
   const navigate = useNavigate();
+
+  const [liked, setLiked] = useState(false); // 좋아요 상태를 관리하는 상태 변수
 
   function goCompare(mov_no) {
     const movieInfo = {
@@ -22,6 +24,12 @@ export default function MovieDetails() {
   }
 
   function handleReviewSubmit() {}
+
+  // 좋아요 버튼을 클릭했을 때 실행
+  const handleLikeClick = () => {
+    setLiked(!liked);
+  };
+
   return (
     <>
       <div className="detail_container">
@@ -31,7 +39,26 @@ export default function MovieDetails() {
               <div className="introWrapper">
                 <h2 className="title">{movieData.mov_title}</h2>
                 <h3 className="titleEng">{movieData.mov_titleEng}</h3>
-                <div className="like">좋아요들어갈 부분</div>
+                <div className="like">
+                  <div className="like-container">
+                    <input
+                      type="checkbox"
+                      id="like-checkbox"
+                      checked={liked}
+                      onChange={handleLikeClick}
+                    />
+
+                    <label
+                      htmlFor="like-checkbox"
+                      className={liked ? "liked" : ""}
+                    >
+                      ♥
+                    </label>
+                    <span style={{ fontSize: "30px", marginLeft: "10px" }}>
+                      {movieData.likeCnt > 0 ? `( ${movieData.likeCnt} )` : ""}
+                    </span>
+                  </div>
+                </div>
                 <div className="intro">{movieData.mov_intro}</div>
               </div>
               <img
@@ -84,6 +111,7 @@ export default function MovieDetails() {
 
           <div className="reviewWrapper">
             <strong>관람평</strong>
+            <span style={{fontSize:'40px', marginLeft:'10px'}}>{movieData.reviewCnt > 0 ? `( ${movieData.reviewCnt} )` : ""}</span>
             <Review
               mov_no={movieData.mov_no}
               onSubmit={handleReviewSubmit}
