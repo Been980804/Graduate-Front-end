@@ -42,7 +42,6 @@ export default function ReviewForm({ ...reviewList }) {
 		setReviewContent("");
 	};
 	const reviews = reviewList.reviewList;
-	console.log(reviews);
 	return (
 		<div className="review_form">
 			<div className="review_body">

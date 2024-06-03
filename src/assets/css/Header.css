@@ -1,54 +1,57 @@
 header {
-	background-color: #1F1F1F;
-	color: white;
+  background-color: #1f1f1f;
+  color: white;
 }
-.header-container{
-	display: flex;
-	width: 100%;
-	height: 150px;
-	align-items: center;
-	justify-content: space-between;
+.header-container {
+  display: flex;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  justify-content: space-between;
 }
-.logo-container{
-	width: 18%;
+.logo-container {
+  width: 18%;
 }
-.search-container{
-	width: 65%;
-
+.search-container {
+  width: 65%;
 }
-.user-container{
-	width: 20%;
-	display: flex;
-	justify-content: right;
-	padding-right: 20px;
-	a{
-		text-decoration-line: none;
-	}
-	a:link{
-		color: white;
-	}
-	a:visited {
-		color : white;
-	  }
-	  a:hover{
-		color: pink;
-	  }
+.user-container {
+  width: 20%;
+  display: flex;
+  justify-content: right;
+  padding-right: 20px;
+  a {
+    text-decoration-line: none;
+  }
+  a:link {
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+  a:hover {
+    color: pink;
+  }
 }
-.logoImg{
-	width: 100%;
+.logoImg {
+  width: 100%;
 }
-.user_name{
-	font-size: 20px;
-	font-weight: 900;
-	margin-right: 30px;
-	line-height: 2.5;
-	img{
-		margin-right: 10px;
-		width: 30px;
-		margin-bottom: 5px;
-	}
+.user_name {
+  font-size: 20px;
+  font-weight: 900;
+  margin-right: 30px;
+  line-height: 2.5;
+  img {
+    margin-right: 10px;
+    width: 30px;
+    margin-bottom: 5px;
+  }
 }
-.loginImg{
-	width: 50px;
-	cursor: pointer;
+.loginImg {
+  width: 50px;
+  cursor: pointer;
+}
+.loginBtn {
+  background-color: #1f1f1f;
+  border: 0;
 }
