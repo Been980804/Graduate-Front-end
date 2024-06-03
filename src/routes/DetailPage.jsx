@@ -55,7 +55,7 @@ export default function MovieDetails() {
                       ♥
                     </label>
                     <span style={{ fontSize: "30px", marginLeft: "10px" }}>
-                      {movieData.likeCnt !== 0 ? `( ${movieData.likeCnt} )` : ""}
+                      {movieData.likeCnt > 0 ? `( ${movieData.likeCnt} )` : ""}
                     </span>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export default function MovieDetails() {
 
           <div className="reviewWrapper">
             <strong>관람평</strong>
-            <span style={{fontSize:'40px', marginLeft:'10px'}}>{movieData.reviewCnt !== 0 ? `( ${movieData.reviewCnt} )` : ""}</span>
+            <span style={{fontSize:'40px', marginLeft:'10px'}}>{movieData.reviewCnt > 0 ? `( ${movieData.reviewCnt} )` : ""}</span>
             <Review
               mov_no={movieData.mov_no}
               onSubmit={handleReviewSubmit}
