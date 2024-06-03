@@ -111,6 +111,7 @@ export default function MovieDetails() {
 
           <div className="reviewWrapper">
             <strong>관람평</strong>
+            <span style={{fontSize:'40px', marginLeft:'10px'}}>{movieData.reviewCnt !== 0 ? `( ${movieData.reviewCnt} )` : ""}</span>
             <Review
               mov_no={movieData.mov_no}
               onSubmit={handleReviewSubmit}
