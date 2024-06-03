@@ -11,7 +11,11 @@ export default function Logout() {
 				if (response.status === 200) return response.data;
 			})
 			.then((result) => {
-				if (result.common.res_code === 200) return console.log(result.common);
+				if (result.common.res_code === 200) {
+					localStorage.removeItem("isAuth");
+
+					alert("Logout");
+				}
 			});
 	}
 	handleLogout();
