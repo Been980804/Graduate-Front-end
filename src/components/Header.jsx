@@ -42,11 +42,11 @@ export default function Header() {
         </div>
 		{/* 로그인시 사용자 정보 보이기 / 로그인유무에 로그인 로그아웃 버튼 변경 */}
         <div className="user-container">
-          <Button variant="primary" onClick={handleShow} className="loginBtn">
-            <img src={logoutImg} className="loginImg" />
-          </Button>
           <Button variant="secondary" onClick={Logout} className="loginBtn">
             <img src={loginImg} className="loginImg" />
+          </Button>
+          <Button variant="primary" onClick={handleShow} className="loginBtn">
+            <img src={logoutImg} className="loginImg" />
           </Button>
           <Login show={show} onHide={handleClose} />
         </div>
