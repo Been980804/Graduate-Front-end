@@ -10,16 +10,15 @@ export default function MovieDetails() {
   const navigate = useNavigate();
 
   function goCompare(mov_no) {
-	const movieInfo = {
-		mov_no : mov_no,
-		mov_title : movieData.mov_title,
-		mov_titleEng : movieData.mov_titleEng,
-		mov_intro : movieData.mov_intro,
-		mov_posterURL : movieData.mov_posterURL
-	}
-	
-    console.log(mov_no);
-    navigate(`/schedule/${mov_no}`, { state: { movieInfo: movieInfo }});
+    const movieInfo = {
+      mov_no: mov_no,
+      mov_title: movieData.mov_title,
+      mov_titleEng: movieData.mov_titleEng,
+      mov_intro: movieData.mov_intro,
+      mov_posterURL: movieData.mov_posterURL,
+    };
+
+    navigate(`/schedule/${mov_no}`, { state: { movieInfo: movieInfo } });
   }
 
   function handleReviewSubmit() {}
@@ -89,7 +88,7 @@ export default function MovieDetails() {
               mov_no={movieData.mov_no}
               onSubmit={handleReviewSubmit}
               reviewList={reviewData}
-            />{" "}
+            />
           </div>
         </div>
       </div>
