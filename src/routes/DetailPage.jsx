@@ -45,7 +45,7 @@ export default function MovieDetails() {
                       type="checkbox"
                       id="like-checkbox"
                       checked={liked}
-                      onChange={handleLikeClick} 
+                      onChange={handleLikeClick}
                     />
 
                     <label
@@ -55,7 +55,7 @@ export default function MovieDetails() {
                       ♥
                     </label>
                     <span style={{ fontSize: "30px", marginLeft: "10px" }}>
-                      ( {movieData.likeCnt} )
+                      {movieData.likeCnt !== 0 ? `( ${movieData.likeCnt} )` : ""}
                     </span>
                   </div>
                 </div>
