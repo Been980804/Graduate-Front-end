@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import "../assets/css/Pagination.css";
 import MovieCard from "./MovieCard";
 function Items({ currentItems }) {
 	return (
@@ -24,10 +25,18 @@ export default function Pagination({ items, itemsPerPage }) {
 
 	return (
 		<>
-			<Items currentItems={currentItems} />
+			<div className="cards-wrapper">
+				<Items currentItems={currentItems} />
+			</div>
 			<ReactPaginate
 				nextLabel=">"
 				previousLabel="<"
+				previousClassName="page-item"
+				previousLinkClassName="page-link"
+				pageClassName="page-item"
+				pageLinkClassName="page-link"
+				nextClassName="page-item"
+				nextLinkClassName="page-link"
 				onPageChange={handlePageClick}
 				pageCount={pageCount}
 				renderOnZeroPageCount={null}
