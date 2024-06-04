@@ -6,3 +6,6 @@
 a{
     text-decoration-line: none;
 }
+li{
+  list-style-type: none;
+}
