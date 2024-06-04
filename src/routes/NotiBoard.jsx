@@ -2,10 +2,20 @@ import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import "../assets/css/Board.css";
 import { extractDateOnly } from "../util/dateUtils";
+import { useState } from "react";
 
 export default function NotiBoard() {
   const response = useLoaderData();
   const notiList = response.notiList;
+	const [show, setShow] = useState(false);
+
+  function handleShow(){
+    // if(mem_class == 9){
+    //   setShow(true);
+    // } else{
+    //   alert('관리자만 이용 가능합니다.');
+    // }
+  }
 
   return (
     <div className="board-container">
@@ -38,6 +48,9 @@ export default function NotiBoard() {
               </Link>
             );
           })}
+      </div>
+      <div className="boardBtn">
+        <button onClick={handleShow}>공지작성</button>
       </div>
     </div>
   );
