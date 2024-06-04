@@ -20,9 +20,6 @@ header {
   display: flex;
   justify-content: right;
   padding-right: 20px;
-  a {
-    text-decoration-line: none;
-  }
   a:link {
     color: white;
   }

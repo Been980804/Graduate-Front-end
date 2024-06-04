@@ -14,6 +14,13 @@ export default function MovieCarousel() {
     setIndex(selectedIndex);
   }
 
+  function truncateTitle(title, maxLength = 11) {
+    if (title.length > maxLength) {
+      return title.slice(0, maxLength) + '...';
+    }
+    return title;
+  }
+
   return (
     <>
       <Carousel
@@ -43,7 +50,7 @@ export default function MovieCarousel() {
           })}
       </Carousel>
 
-      <h2 style={{ textAlign: "center", marginTop: "20px" }}>
+      <h2 className="movieTop5">
         현재 상영작 Top5
       </h2>
       <div className="movie_grid">
@@ -53,7 +60,7 @@ export default function MovieCarousel() {
               <Link to={`/details/${screening.mov_no}`} key={screening.mov_no}>
                 <div>
                   <span
-                    className="rank"
+                    className="rankImg"
                     style={{
                       backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.9) 100%),
 				   url(${screening.mov_posterURL})`,
@@ -61,14 +68,14 @@ export default function MovieCarousel() {
                   >
                     {idx + 1}
                   </span>
-                  <span>{screening.mov_title}</span>
+                  <span className="rankTitle">{truncateTitle(screening.mov_title)}</span>
                 </div>
               </Link>
             );
           })}
       </div>
 
-      <h2 style={{ textAlign: "center", marginTop: "20px" }}>
+      <h2 className="movieTop5">
         상영 예정작 Top5
       </h2>
       <div className="movie_grid">
@@ -81,7 +88,7 @@ export default function MovieCarousel() {
               >
                 <div>
                   <span
-                    className="rank"
+                    className="rankImg"
                     style={{
                       backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.4) 80%, rgba(0, 0, 0, 0.9) 100%),
 				   url(${toBeScreened.mov_posterURL})`,
@@ -89,7 +96,7 @@ export default function MovieCarousel() {
                   >
                     {idx + 1}
                   </span>
-                  <span>{toBeScreened.mov_title}</span>
+                  <span className="rankTitle">{truncateTitle(toBeScreened.mov_title)}</span>
                 </div>
               </Link>
             );
