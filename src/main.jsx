@@ -15,6 +15,11 @@ import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 import SearchPage from "./routes/SearchPage.jsx";
 import {loader as footerLoader} from "./components/Footer.jsx"
+// 공지사항 게시판
+import NotiBoard from "./routes/NotiBoard.jsx";
+import {loader as notiLoader} from "./routes/NotiBoard.jsx"
+// import NotiDetail from "./routes/NotiDetail.jsx";
+
 
 const routes = createBrowserRouter([
 	{
@@ -60,6 +65,17 @@ const routes = createBrowserRouter([
 					},
 				],
 			},
+			{
+				path: "/noti",
+				element: <NotiBoard />,
+				loader: notiLoader,
+				children: [
+					// {
+					// 	path: "/noti/detail",
+					// 	element: <NotiDetail />,
+					// }
+				]
+			}
 		],
 	},
 ]);

@@ -1,0 +1,47 @@
+.board-container {
+    margin: 30px;
+    padding: 20px;
+  }
+  
+  .board-title {
+    font-size: 50px;
+    margin-left: 20px;
+  }
+  
+  .board-table {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 20px;
+    border : 1px solid gray;
+    border-radius: 10px;
+  }
+  
+  .board-table-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 20px;
+    background-color: rgb(186, 186, 186);
+  }
+  
+  .noti-column {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid gray;
+}
+  
+  .noti-num,
+  .noti-cnt {
+    width: 10%;
+  }
+  
+  .noti-title {
+    width: 30%;
+  }
+  
+  .noti-user,
+  .noti-regDate {
+    width: 20%;
+  }
+  

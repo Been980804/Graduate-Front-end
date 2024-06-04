@@ -46,24 +46,26 @@ a {
   font-size: 10px;
   opacity: 0.5;
 }
-.board-link , .board-link:hover{
+.footer-board-link , .footer-board-link:hover{
   color: white;
 }
 .goBoardView_noti {
+  width: 70px;
   font-size: 15px;
-  position: absolute;
-  left: 680px;
-  top: 1940px;
+  position: relative;
+  left: 600px;
+  top: 65px;
   border: 1px solid white;
   border-radius: 10px;
   padding: 5px;
   cursor: pointer;
 }
 .goBoardView_qna {
+  width: 70px;
   font-size: 15px;
-  position: absolute;
-  left: 1505px;
-  top: 1940px;
+  position: relative;
+  left: 600px;
+  top: 65px;
   border: 1px solid white;
   border-radius: 10px;
   padding: 5px;
