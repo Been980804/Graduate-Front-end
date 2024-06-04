@@ -15,7 +15,7 @@ export default function InfoPage() {
 	<div className="info-wrapper">
       <div className="info-box">
 		<div  className="userInfo">회원 정보 조회</div>
-        <ul>
+        <ul className="userInfo-ul">
           <li className="info-li">
             <label className="id li-label">아이디</label>
             <p className="li-p">{response.mem_id}</p>

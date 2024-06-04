@@ -1,0 +1,53 @@
+.boardDetail-container {
+  margin: 30px;
+  padding: 20px;
+}
+.board-header {
+  font-size: 50px;
+  margin-left: 20px;
+}
+.boardDetail-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.boardDetail-column {
+  display: flex;
+  margin: 30px 20px;
+  font-size: 25px;
+}
+.boardDetail-th {
+  width: 10%;
+  text-align: center;
+  border-right: 1px solid gray;
+}
+.boardDetail-td {
+  width: 80%;
+  padding: 0 25px;
+}
+.title {
+  font-size: 30px;
+}
+.content {
+  min-height: 300px;
+}
+.goBoardBtn {
+  display: flex;
+  justify-content: right;
+  margin: 20px 100px;
+  button {
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #c7d6f3;
+  }
+}
+.qna_answer{
+  border-top: 1px solid black;
+  div{
+    margin: 20px 20px;
+    padding: 20px 0;
+  }
+}

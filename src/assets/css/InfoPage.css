@@ -2,9 +2,6 @@ li{
     list-style-type: none;
     display: flex;
 }
-.test{
-    display: flex;
-}
 .info-wrapper{
     font-size: 30px;
     display: flex;
@@ -21,6 +18,10 @@ li{
     margin-bottom: 100px;
     text-align: center;
 }
+.userInfo-ul{
+    display: flex;
+    flex-direction: column;
+}
 .li-label{
     width: 150px;
     text-align: center;
@@ -31,7 +32,7 @@ li{
     margin-right: 20px;
 }
 .li-p{
-    margin-top:15px;
+    margin-top:10px;
     border: 1px solid #d7dde1;
     background-color: #f7f8fa;
     text-align: center;
@@ -39,7 +40,6 @@ li{
     width: 400px;
 }
 .goModiBtn{
-    float: right;
     border-radius: 5px;
     border: 2px solid #787879;
     background-color: #c7d6f3;

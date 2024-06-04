@@ -15,6 +15,17 @@ import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 import SearchPage from "./routes/SearchPage.jsx";
 import {loader as footerLoader} from "./components/Footer.jsx"
+// 공지사항 게시판
+import NotiBoard from "./routes/NotiBoard.jsx";
+import {loader as notiLoader} from "./routes/NotiBoard.jsx"
+import NotiDetail from "./routes/NotiDetail.jsx";
+import {loader as notiDetailLoader} from "./routes/NotiDetail.jsx";
+// 문의사항 게시판
+import QnaBoard from "./routes/QnaBoard.jsx";
+import {loader as qnaLoader} from "./routes/QnaBoard.jsx";
+import QnaDetail from "./routes/QnaDetail.jsx";
+import{loader as qnaDetailLoader} from "./routes/QnaDetail.jsx";
+
 
 const routes = createBrowserRouter([
 	{
@@ -60,6 +71,26 @@ const routes = createBrowserRouter([
 					},
 				],
 			},
+			{
+				path: "/noti",
+				element: <NotiBoard />,
+				loader: notiLoader,
+			},
+			{
+				path: "/detailNoti/:noti_no",
+				element: <NotiDetail />,
+				loader: notiDetailLoader,
+			},
+			{
+				path: "/qna",
+				element: <QnaBoard />,
+				loader: qnaLoader,
+			},
+			{
+				path: "detailQna/:qna_no",
+				element: <QnaDetail />,
+				loader: qnaDetailLoader,
+			}
 		],
 	},
 ]);
