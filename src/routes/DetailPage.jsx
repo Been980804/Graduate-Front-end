@@ -1,32 +1,26 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import "../assets/css/DetailPage.css";
+import Compare from "../components/Compare.jsx";
 import Review from "../components/Review.jsx";
 import ScrollToTop from "../util/ScrollToTop.js";
 export default function MovieDetails() {
 	const response = useLoaderData();
+	const [show, setShow] = useState(false);
 	const movieData = response.movieData;
 	const reviewData = response.reviewData;
-	const navigate = useNavigate();
-	const { pathname } = useLocation();
 
 	const [liked, setLiked] = useState(false); // 좋아요 상태를 관리하는 상태 변수
 
-	function goCompare(mov_no) {
-		const movieInfo = {
-			mov_no: mov_no,
-			mov_title: movieData.mov_title,
-			mov_titleEng: movieData.mov_titleEng,
-			mov_intro: movieData.mov_intro,
-			mov_posterURL: movieData.mov_posterURL,
-		};
-
-		navigate(`/schedule/${mov_no}`, { state: { movieInfo: movieInfo } });
-	}
-
 	function handleReviewSubmit() {}
 
+	function handleClose() {
+		setShow(false);
+	}
+	function handleShow() {
+		setShow(true);
+	}
 	// 좋아요 버튼을 클릭했을 때 실행
 	const handleLikeClick = () => {
 		setLiked(!liked);
@@ -35,6 +29,7 @@ export default function MovieDetails() {
 
 	return (
 		<>
+			<Compare show={show} onHide={handleClose} movieData={movieData} />
 			<div className="detail_container">
 				<div className="wrapper">
 					<div className="movieInfoWrapper">
@@ -68,9 +63,7 @@ export default function MovieDetails() {
 								src={movieData.mov_posterURL}
 								alt={movieData.mov_title}
 							/>
-							<button
-								className="compareBtn"
-								onClick={() => goCompare(movieData.mov_no)}>
+							<button className="compareBtn" onClick={handleShow}>
 								상영시간표 비교하기
 							</button>
 						</div>
