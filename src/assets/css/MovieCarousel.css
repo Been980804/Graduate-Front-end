@@ -22,7 +22,6 @@
 .movie_grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* gap: 8px; */
   background-color: rgb(255, 252, 254);
   margin: 20px 0;
   padding: 30px;
@@ -37,9 +36,11 @@
     border-radius: 10px;
   }
 }
-.movie_grid a {
+.movie_grid a, .movie_grid a:hover {
   color: inherit;
+  text-decoration-line: none;
 }
+ 
 .rankImg {
   display: flex;
   width: 230px;
