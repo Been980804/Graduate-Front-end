@@ -23,6 +23,8 @@ import {loader as notiDetailLoader} from "./routes/NotiDetail.jsx";
 // 문의사항 게시판
 import QnaBoard from "./routes/QnaBoard.jsx";
 import {loader as qnaLoader} from "./routes/QnaBoard.jsx";
+import QnaDetail from "./routes/QnaDetail.jsx";
+import{loader as qnaDetailLoader} from "./routes/QnaDetail.jsx";
 
 
 const routes = createBrowserRouter([
@@ -83,6 +85,11 @@ const routes = createBrowserRouter([
 				path: "/qna",
 				element: <QnaBoard />,
 				loader: qnaLoader,
+			},
+			{
+				path: "detailQna/:qna_no",
+				element: <QnaDetail />,
+				loader: qnaDetailLoader,
 			}
 		],
 	},

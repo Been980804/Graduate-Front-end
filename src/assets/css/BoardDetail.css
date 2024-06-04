@@ -20,7 +20,6 @@
 }
 .boardDetail-th {
   width: 10%;
-  /* padding: 0 10px; */
   text-align: center;
   border-right: 1px solid gray;
 }
@@ -43,5 +42,12 @@
     height: 40px;
     border-radius: 8px;
     background-color: #c7d6f3;
+  }
+}
+.qna_answer{
+  border-top: 1px solid black;
+  div{
+    margin: 20px 20px;
+    padding: 20px 0;
   }
 }

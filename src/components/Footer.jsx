@@ -52,7 +52,11 @@ export default function Footer() {
           </div>
           {qnaList &&
             qnaList.map((qna) => (
-              <Link to="#" key={qna.qna_no} className="footer-board-link">
+              <Link
+                to={`/detailQna/${qna.qna_no}`}
+                key={qna.qna_no}
+                className="footer-board-link"
+              >
                 <ul className="board-info">
                   <li className="board-info-title">{qna.qes_title}</li>
                   <li className="board-info-date">

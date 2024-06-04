@@ -20,14 +20,20 @@ export default function QnaBoard() {
         {qnaList &&
           qnaList.map((qna, idx) => {
             return (
-              <div className="board-column" key={qna.qna_no}>
-                <div className="board-num">{idx + 1}</div>
-                <div className="board-title">{qna.qes_title}</div>
-                <div className="board-user">{qna.mem_name}</div>
-                <div className="board-regDate">
-                  {extractDateOnly(qna.reg_date)}
+              <Link
+                to={`/detailQna/${qna.qna_no}`}
+                key={qna.qna_no}
+                className="board-link"
+              >
+                <div className="board-column">
+                  <div className="board-num">{idx + 1}</div>
+                  <div className="board-title">{qna.qes_title}</div>
+                  <div className="board-user">{qna.mem_name}</div>
+                  <div className="board-regDate">
+                    {extractDateOnly(qna.reg_date)}
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
       </div>
