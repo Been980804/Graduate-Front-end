@@ -22,7 +22,6 @@
 .movie_grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* gap: 8px; */
   background-color: rgb(255, 252, 254);
   margin: 20px 0;
   padding: 30px;
@@ -34,25 +33,33 @@
   img {
     width: 180px;
     height: auto;
-	border-radius: 10px;
+    border-radius: 10px;
   }
 }
-.movie_grid a {
-	text-decoration: none; 
-	color: inherit; 
-  }
-  
-  .movie_grid a:hover {
-	text-decoration: none; 
-  }
-.rank{
-	display: flex;
-	width: 230px;
-	height: 317px;
-	text-align: left;
-	font-size: 50px;
-	color: white;
-	padding: 250px 0 0 7px;
-	border-radius: 10px;
-	background-size: 100% 100%;
+.movie_grid a, .movie_grid a:hover {
+  color: inherit;
+  text-decoration-line: none;
+}
+ 
+.rankImg {
+  display: flex;
+  width: 230px;
+  height: 317px;
+  text-align: left;
+  font-size: 50px;
+  color: white;
+  padding: 250px 0 0 7px;
+  border-radius: 10px;
+  background-size: 100% 100%;
+}
+.rankTitle {
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 10px;
+}
+.movieTop5 {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bolder;
 }

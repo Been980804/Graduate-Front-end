@@ -14,10 +14,13 @@ import JoinPage from "./routes/JoinPage.jsx";
 import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 import SearchPage from "./routes/SearchPage.jsx";
+import {loader as footerLoader} from "./components/Footer.jsx"
+
 const routes = createBrowserRouter([
 	{
 		path: "/",
 		element: <RouteLayout />,
+		loader: footerLoader,
 		children: [
 			{
 				path: "/",

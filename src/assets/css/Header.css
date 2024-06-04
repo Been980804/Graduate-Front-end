@@ -20,9 +20,6 @@ header {
   display: flex;
   justify-content: right;
   padding-right: 20px;
-  a {
-    text-decoration-line: none;
-  }
   a:link {
     color: white;
   }
@@ -52,6 +49,14 @@ header {
   cursor: pointer;
 }
 .loginBtn {
-  background-color: #1f1f1f;
-  border: 0;
+  background-color: #1f1f1f !important;
+  border: 0 !important;
+}
+.login:hover {
+  background-color: #0d6efd !important;
+  border: 0 !important;
+}
+.logout:hover{
+  background-color: #6c757d !important;
+  border: 0 !important;
 }
