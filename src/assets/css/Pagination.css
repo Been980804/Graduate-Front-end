@@ -4,3 +4,12 @@
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 }
+
+.pagination-wrapper {
+	display: block;
+	min-height: 10;
+}
+
+.pagination-wrapper li {
+	float: left;
+}

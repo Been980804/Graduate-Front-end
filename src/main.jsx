@@ -2,30 +2,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { loader as footerLoader } from "./components/Footer.jsx";
 import Logout from "./components/Logout.jsx";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
 import "./index.css";
-import ComparePage, { loader as compareLoader } from "./routes/ComparePage.jsx";
 import DetailPage, { loader as detailLoader } from "./routes/DetailPage.jsx";
 import InfoPage, { loader as infoLoader } from "./routes/InfoPage.jsx";
 import JoinPage from "./routes/JoinPage.jsx";
 import ModInfoPage from "./routes/ModInfoPage.jsx";
 import RouteLayout from "./routes/RouteLayout.jsx";
 import SearchPage from "./routes/SearchPage.jsx";
-import {loader as footerLoader} from "./components/Footer.jsx"
 // 공지사항 게시판
-import NotiBoard from "./routes/NotiBoard.jsx";
-import {loader as notiLoader} from "./routes/NotiBoard.jsx"
-import NotiDetail from "./routes/NotiDetail.jsx";
-import {loader as notiDetailLoader} from "./routes/NotiDetail.jsx";
+import NotiBoard, { loader as notiLoader } from "./routes/NotiBoard.jsx";
+import NotiDetail, {
+	loader as notiDetailLoader,
+} from "./routes/NotiDetail.jsx";
 // 문의사항 게시판
-import QnaBoard from "./routes/QnaBoard.jsx";
-import {loader as qnaLoader} from "./routes/QnaBoard.jsx";
-import QnaDetail from "./routes/QnaDetail.jsx";
-import{loader as qnaDetailLoader} from "./routes/QnaDetail.jsx";
-
+import QnaBoard, { loader as qnaLoader } from "./routes/QnaBoard.jsx";
+import QnaDetail, { loader as qnaDetailLoader } from "./routes/QnaDetail.jsx";
 
 const routes = createBrowserRouter([
 	{
@@ -55,11 +51,7 @@ const routes = createBrowserRouter([
 				path: "/search",
 				element: <SearchPage />,
 			},
-			{
-				path: "/schedule/:mov_no",
-				element: <ComparePage />,
-				loader: compareLoader,
-			},
+
 			{
 				path: "/info",
 				element: <InfoPage />,
@@ -90,7 +82,7 @@ const routes = createBrowserRouter([
 				path: "detailQna/:qna_no",
 				element: <QnaDetail />,
 				loader: qnaDetailLoader,
-			}
+			},
 		],
 	},
 ]);
