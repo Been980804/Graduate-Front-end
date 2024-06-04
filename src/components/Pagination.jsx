@@ -28,19 +28,21 @@ export default function Pagination({ items, itemsPerPage }) {
 			<div className="cards-wrapper">
 				<Items currentItems={currentItems} />
 			</div>
-			<ReactPaginate
-				nextLabel=">"
-				previousLabel="<"
-				previousClassName="page-item"
-				previousLinkClassName="page-link"
-				pageClassName="page-item"
-				pageLinkClassName="page-link"
-				nextClassName="page-item"
-				nextLinkClassName="page-link"
-				onPageChange={handlePageClick}
-				pageCount={pageCount}
-				renderOnZeroPageCount={null}
-			/>
+			<div className="pagination-wrapper">
+				<ReactPaginate
+					nextLabel=">"
+					previousLabel="<"
+					previousClassName="page-item"
+					previousLinkClassName="page-link"
+					pageClassName="page-item"
+					pageLinkClassName="page-link"
+					nextClassName="page-item"
+					nextLinkClassName="page-link"
+					onPageChange={handlePageClick}
+					pageCount={pageCount}
+					renderOnZeroPageCount={null}
+				/>
+			</div>
 		</>
 	);
 }
