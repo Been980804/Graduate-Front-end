@@ -1,40 +1,43 @@
 import axios from "axios";
-import { Link, useLoaderData , useNavigate} from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import "../assets/css/Footer.css";
+import { extractDateOnly } from "../util/dateUtils";
 
 export default function Footer() {
   const response = useLoaderData();
   const notiList = response.notiList;
   const qnaList = response.qnaList;
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  function goNotiBoard(){
-    navigate('/noti');
+  function goNotiBoard() {
+    navigate("/noti");
   }
-  function goQnaBoard(){
-    navigate('/qna');
+  function goQnaBoard() {
+    navigate("/qna");
   }
-  function extractDateOnly(dateString) {
-    return dateString.split(" ")[0];
-  }
-  
+
   return (
     <footer>
       <div className="footer-container">
         <div className="footer-board">
           <div className="goBoardView_noti">
-            <strong onClick={() => goNotiBoard()}>+ 더 보기</strong> {/* 공지사항 게시판으로 navigate */}
+            <strong onClick={() => goNotiBoard()}>+ 더 보기</strong>{" "}
           </div>
           <div className="footer-board-title">
             <strong>NOTICE</strong>
           </div>
           {notiList &&
             notiList.map((noti) => (
-              <Link to="#" key={noti.noti_no} className="footer-board-link">
+              <Link
+                to={`/detailNoti/${noti.noti_no}`}
+                key={noti.noti_no}
+                className="footer-board-link"
+              >
                 <ul className="board-info">
-                  {/* 각각의 상세보기 */}
                   <li className="board-info-title">{noti.noti_title}</li>
-                  <li className="board-info-date">{extractDateOnly(noti.reg_date)}</li>
+                  <li className="board-info-date">
+                    {extractDateOnly(noti.reg_date)}
+                  </li>
                 </ul>
               </Link>
             ))}
@@ -42,7 +45,7 @@ export default function Footer() {
 
         <div className="footer-board">
           <div className="goBoardView_qna">
-            <strong onClick={() => goQnaBoard()}>+ 더 보기</strong> {/* 문의사항 게시판으로 navigate */}
+            <strong onClick={() => goQnaBoard()}>+ 더 보기</strong>{" "}
           </div>
           <div className="footer-board-title">
             <strong>Q&A</strong>
@@ -51,9 +54,10 @@ export default function Footer() {
             qnaList.map((qna) => (
               <Link to="#" key={qna.qna_no} className="footer-board-link">
                 <ul className="board-info">
-                  {/* 각각의 상세보기 */}
                   <li className="board-info-title">{qna.qes_title}</li>
-                  <li className="board-info-date">{extractDateOnly(qna.qes_reg_date)}</li>
+                  <li className="board-info-date">
+                    {extractDateOnly(qna.qes_reg_date)}
+                  </li>
                 </ul>
               </Link>
             ))}

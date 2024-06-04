@@ -1,3 +1,6 @@
+a {
+  text-decoration-line: none;
+}
 .board-container {
     margin: 30px;
     padding: 20px;
@@ -44,4 +47,6 @@
   .board-regDate {
     width: 20%;
   }
-  
+  .board-link , .board-link:hover{
+    color: black;
+  }
