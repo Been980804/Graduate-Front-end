@@ -2,10 +2,20 @@ import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import "../assets/css/Board.css";
 import { extractDateOnly } from "../util/dateUtils";
+import Qna from "../components/Qna.jsx";
+import { useState } from "react";
 
 export default function QnaBoard() {
   const response = useLoaderData();
   const qnaList = response.qnaList;
+	const [show, setShow] = useState(false);
+
+  function handleShow(){
+    setShow(true);
+  }
+  function handleClose(){
+    setShow(false);
+  }
 
   return (
     <div className="board-container">
@@ -38,7 +48,8 @@ export default function QnaBoard() {
           })}
       </div>
       <div className="boardBtn">
-        <button>문의하기</button>
+        <button onClick={handleShow}>문의하기</button>
+        <Qna show={show} onHide={handleClose}/>
       </div>
     </div>
   );
