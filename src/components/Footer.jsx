@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import "../assets/css/Footer.css";
-import { extractDateOnly } from "../util/dateUtils";
+import { extractDateOnly } from "../util/functionUtil";
 
 export default function Footer() {
   const response = useLoaderData();

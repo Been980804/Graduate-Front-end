@@ -3,6 +3,7 @@ import { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { Link, useLoaderData } from "react-router-dom";
 import "../assets/css/MovieCarousel.css";
+import { truncateTitle } from "../util/functionUtil";
 
 export default function MovieCarousel() {
   const [index, setIndex] = useState(0);
@@ -14,12 +15,6 @@ export default function MovieCarousel() {
     setIndex(selectedIndex);
   }
 
-  function truncateTitle(title, maxLength = 11) {
-    if (title.length > maxLength) {
-      return title.slice(0, maxLength) + '...';
-    }
-    return title;
-  }
 
   return (
     <>

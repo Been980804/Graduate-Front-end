@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import "../assets/css/Board.css";
-import { extractDateOnly } from "../util/dateUtils";
+import { extractDateOnly } from "../util/functionUtil.js";
 import Qna from "../components/Qna.jsx";
 import { useState } from "react";
 

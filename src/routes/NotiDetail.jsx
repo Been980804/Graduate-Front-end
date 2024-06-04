@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useLoaderData , useNavigate  } from "react-router-dom";
 import "../assets/css/BoardDetail.css";
-import { extractDateOnly } from "../util/dateUtils";
+import { extractDateOnly } from "../util/functionUtil";
 
 export default function NotiDetail() {
   const response = useLoaderData();
