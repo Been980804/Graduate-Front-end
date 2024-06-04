@@ -11,7 +11,9 @@ export default function Footer() {
   function goNotiBoard(){
     navigate('/noti');
   }
-
+  function goQnaBoard(){
+    navigate('/qna');
+  }
   function extractDateOnly(dateString) {
     return dateString.split(" ")[0];
   }
@@ -40,7 +42,7 @@ export default function Footer() {
 
         <div className="footer-board">
           <div className="goBoardView_qna">
-            <strong>+ 더 보기</strong> {/* 문의사항 게시판으로 navigate */}
+            <strong onClick={() => goQnaBoard()}>+ 더 보기</strong> {/* 문의사항 게시판으로 navigate */}
           </div>
           <div className="footer-board-title">
             <strong>Q&A</strong>

@@ -3,7 +3,7 @@
     padding: 20px;
   }
   
-  .board-title {
+  .board-header {
     font-size: 50px;
     margin-left: 20px;
   }
@@ -24,24 +24,24 @@
     background-color: rgb(186, 186, 186);
   }
   
-  .noti-column {
+  .board-column {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
     border-top: 1px solid gray;
 }
   
-  .noti-num,
-  .noti-cnt {
+  .board-num,
+  .board-cnt {
     width: 10%;
   }
   
-  .noti-title {
+  .board-title {
     width: 30%;
   }
   
-  .noti-user,
-  .noti-regDate {
+  .board-user,
+  .board-regDate {
     width: 20%;
   }
   

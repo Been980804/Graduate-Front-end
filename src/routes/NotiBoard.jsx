@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
-import "../assets/css/NotiBoard.css";
+import "../assets/css/Board.css";
 
 export default function NotiBoard() {
     const response = useLoaderData();
@@ -12,24 +12,24 @@ export default function NotiBoard() {
   
     return (
       <div className="board-container">
-        <strong className="board-title">공지사항</strong>
+        <strong className="board-header">공지사항</strong>
         <div className="board-table">
           <div className="board-table-header">
-            <div className="noti-num">번호</div>
-            <div className="noti-title">제목</div>
-            <div className="noti-user">작성자</div>
-            <div className="noti-cnt">조회수</div>
-            <div className="noti-regDate">작성일</div>
+            <div className="board-num">번호</div>
+            <div className="board-title">제목</div>
+            <div className="board-user">작성자</div>
+            <div className="board-cnt">조회수</div>
+            <div className="board-regDate">작성일</div>
           </div>
           {notiList &&
             notiList.map((noti, idx) => {
               return (
-                <div className="noti-column" key={idx}>
-                  <div className="noti-num">{idx + 1}</div>
-                  <div className="noti-title">{noti.noti_title}</div>
-                  <div className="noti-user">{noti.mem_name}</div>
-                  <div className="noti-cnt">{noti.noti_cnt}</div>
-                  <div className="noti-regDate">{extractDateOnly(noti.reg_date)}</div>
+                <div className="board-column" key={noti.noti_no}>
+                  <div className="board-num">{idx + 1}</div>
+                  <div className="board-title">{noti.noti_title}</div>
+                  <div className="board-user">{noti.mem_name}</div>
+                  <div className="board-cnt">{noti.noti_cnt}</div>
+                  <div className="board-regDate">{extractDateOnly(noti.reg_date)}</div>
                 </div>
               );
             })}

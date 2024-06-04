@@ -19,6 +19,9 @@ import {loader as footerLoader} from "./components/Footer.jsx"
 import NotiBoard from "./routes/NotiBoard.jsx";
 import {loader as notiLoader} from "./routes/NotiBoard.jsx"
 // import NotiDetail from "./routes/NotiDetail.jsx";
+// 문의사항 게시판
+import QnaBoard from "./routes/QnaBoard.jsx";
+import {loader as qnaLoader} from "./routes/QnaBoard.jsx";
 
 
 const routes = createBrowserRouter([
@@ -74,6 +77,14 @@ const routes = createBrowserRouter([
 					// 	path: "/noti/detail",
 					// 	element: <NotiDetail />,
 					// }
+				]
+			},
+			{
+				path: "/qna",
+				element: <QnaBoard />,
+				loader: qnaLoader,
+				children: [
+				
 				]
 			}
 		],
