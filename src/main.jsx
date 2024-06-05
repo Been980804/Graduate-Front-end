@@ -3,7 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { loader as footerLoader } from "./components/Footer.jsx";
-import Logout from "./components/Logout.jsx";
 import MovieCarousel, {
 	loader as movieLoader,
 } from "./components/MovieCarousel.jsx";
@@ -38,10 +37,6 @@ const routes = createBrowserRouter([
 				path: "/details/:mov_no",
 				element: <DetailPage />,
 				loader: detailLoader,
-			},
-			{
-				path: "/logout",
-				element: <Logout />,
 			},
 			{
 				path: "/join",

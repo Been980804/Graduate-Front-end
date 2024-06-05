@@ -19,7 +19,7 @@ export default function Header() {
 		mem_class: "",
 		mem_id: "",
 	});
-	const [userContext] = useUserState();
+	const [userContext, setUserContext] = useUserState();
 
 	function handleClose() {
 		setShow(false);
@@ -66,12 +66,26 @@ export default function Header() {
 				.then((result) => {
 					if (result.common.res_code === 200) {
 						sessionStorage.setItem("isLoggedIn", true);
+						setUserInfo({
+							mem_class: result.data.mem_class,
+							mem_id: result.data.mem_id,
+							mem_name: result.data.mem_name,
+							mem_no: result.data.mem_no,
+						});
+						setUserContext(userInfo);
 					} else {
-						alert("ID 혹은 PW가 일치하지 않습니다.");
-						return;
+						sessionStorage.removeItem("isLoggedIn");
+						setUserContext({
+							mem_class: "",
+							mem_id: "",
+							mem_name: "",
+							mem_no: "",
+						});
 					}
 				});
 		}
+		handleAuth();
+		console.log(userContext);
 	}, []);
 	return (
 		<header>
