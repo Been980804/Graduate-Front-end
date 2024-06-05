@@ -6,6 +6,7 @@ import "../assets/css/Header.css";
 import logo from "../assets/images/logo.png";
 import { useUserState } from "../contexts/UserContext";
 import Login from "./Login";
+import Signup from "./Signup";
 import Search from "./Search";
 import loginImg from "/src/assets/images/login.png";
 import logoutImg from "/src/assets/images/logout.png";
@@ -13,7 +14,8 @@ import popcorn from "/src/assets/images/popcorn.png";
 export default function Header() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
   const [userInfo, setUserInfo] = useState({
     mem_no: "",
     mem_name: "",
@@ -22,11 +24,17 @@ export default function Header() {
   });
   const [userContext, setUserContext] = useUserState();
 
-  function handleClose() {
-    setShow(false);
+  function handleCloseLogin() {
+    setShowLogin(false);
   }
-  function handleShow() {
-    setShow(true);
+  function handleShowLogin() {
+    setShowLogin(true);
+  }
+  function handleCloseSignup() {
+    setShowSignup(false);
+  }
+  function handleShowSignup() {
+    setShowSignup(true);
   }
 
   async function handleLogout() {
@@ -88,6 +96,7 @@ export default function Header() {
     handleAuth();
     console.log(userContext);
   }, []);
+
   return (
     <header>
       <div className="header-container">
@@ -99,7 +108,6 @@ export default function Header() {
         <div className="search-container">
           <Search />
         </div>
-        {/* 로그인시 사용자 정보 보이기 / 로그인유무에 로그인 로그아웃 버튼 변경 */}
 
         {isLoggedIn ? (
           <div className="user-container">
@@ -121,7 +129,7 @@ export default function Header() {
           <div className="user-container">
             <Button
               variant="primary"
-              onClick={handleShow}
+              onClick={handleShowLogin}
               className="loginBtn login"
             >
               <img src={loginImg} className="loginImg" />
@@ -130,12 +138,14 @@ export default function Header() {
         )}
 
         <Login
-          show={show}
-          onHide={handleClose}
+          show={showLogin}
+          onHide={handleCloseLogin}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           setIsLoggedIn={setIsLoggedIn}
+          onShowSignup={handleShowSignup}
         />
+        <Signup show={showSignup} onHide={handleCloseSignup} />
       </div>
     </header>
   );

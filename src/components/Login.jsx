@@ -15,6 +15,7 @@ export default function Login({
 	userInfo,
 	setUserInfo,
 	setIsLoggedIn,
+	onShowSignup,
 }) {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
@@ -54,8 +55,8 @@ export default function Login({
 			});
 		onHide();
 	}
-	function handleJoin() {
-		//join 관련 처리
+	function handleSignup() {
+		onShowSignup();
 		onHide();
 	}
 
@@ -87,7 +88,7 @@ export default function Login({
 				</Form.Group>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={handleJoin}>
+				<Button variant="secondary" onClick={handleSignup}>
 					회원가입
 				</Button>
 				<Button variant="primary" onClick={handleSubmit(handleLogin)}>
