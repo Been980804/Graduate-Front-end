@@ -8,7 +8,7 @@ import id from "/src/assets/images/profile.png";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({ show, onHide }) {
+export default function Login({ show, onHide, onShowSignup }) {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 
@@ -37,9 +37,10 @@ export default function Login({ show, onHide }) {
 		onHide();
 	}
 
-	function handleJoin() {
+	function handleSignup() {
 		//join 관련 처리
 		onHide();
+		onShowSignup();
 	}
 	return (
 		<Modal show={show} onHide={onHide} centered>
@@ -69,7 +70,7 @@ export default function Login({ show, onHide }) {
 				</Form.Group>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={onHide}>
+				<Button variant="secondary" onClick={handleSignup}>
 					회원가입
 				</Button>
 				<Button variant="primary" onClick={handleSubmit(handleLogin)}>
