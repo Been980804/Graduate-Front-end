@@ -12,17 +12,11 @@ import loginImg from "/src/assets/images/login.png";
 import logoutImg from "/src/assets/images/logout.png";
 import popcorn from "/src/assets/images/popcorn.png";
 export default function Header() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userContext, setUserContext] = useUserState();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    mem_no: "",
-    mem_name: "",
-    mem_class: "",
-    mem_id: "",
-  });
-  const [userContext, setUserContext] = useUserState();
 
   function handleCloseLogin() {
     setShowLogin(false);
@@ -57,64 +51,63 @@ export default function Header() {
       });
   }
 
-  useEffect(() => {
-    const storedInfo = sessionStorage.getItem("isLoggedIn");
-    if (storedInfo) {
-      setIsLoggedIn(true);
-    }
-    async function handleAuth() {
-      await axios({
-        method: "get",
-        url: "http://localhost:8080/user/auth",
-        withCredentials: true,
-      })
-        .then((response) => {
-          if (response.status === 200) return response.data;
-          else return;
-        })
-        .then((result) => {
-          if (result.common.res_code === 200) {
-            sessionStorage.setItem("isLoggedIn", true);
-            setUserInfo({
-              mem_class: result.data.mem_class,
-              mem_id: result.data.mem_id,
-              mem_name: result.data.mem_name,
-              mem_no: result.data.mem_no,
-            });
-            setUserContext(userInfo);
-          } else {
-            sessionStorage.removeItem("isLoggedIn");
-            setUserContext({
-              mem_class: "",
-              mem_id: "",
-              mem_name: "",
-              mem_no: "",
-            });
-          }
-        });
-    }
-    handleAuth();
-    console.log(userContext);
-  }, []);
+	useEffect(() => {
+		const storedInfo = sessionStorage.getItem("isLoggedIn");
+		if (storedInfo) {
+			setIsLoggedIn(true);
+		}
+		async function handleAuth() {
+			await axios({
+				method: "get",
+				url: "http://localhost:8080/user/auth",
+				withCredentials: true,
+			})
+				.then((response) => {
+					if (response.status === 200) return response.data;
+					else return;
+				})
+				.then((result) => {
+					if (result.common.res_code === 200) {
+						sessionStorage.setItem("isLoggedIn", true);
 
-  return (
-    <header>
-      <div className="header-container">
-        <div className="logo-container">
-          <Link to={"/"}>
-            <img src={logo} alt="logo" className="logoImg" />
-          </Link>
-        </div>
-        <div className="search-container">
-          <Search />
-        </div>
+						setUserContext({
+							mem_class: result.data.mem_class,
+							mem_id: result.data.mem_id,
+							mem_name: result.data.mem_name,
+							mem_no: result.data.mem_no,
+						});
+					} else {
+						sessionStorage.removeItem("isLoggedIn");
+						setUserContext({
+							mem_class: "",
+							mem_id: "",
+							mem_name: "",
+							mem_no: "",
+						});
+					}
+				});
+		}
+		handleAuth();
+	}, []);
+
+	return (
+		<header>
+			<div className="header-container">
+				<div className="logo-container">
+					<Link to={"/"}>
+						<img src={logo} alt="logo" className="logoImg" />
+					</Link>
+				</div>
+				<div className="search-container">
+					<Search />
+				</div>
 
         {isLoggedIn ? (
           <div className="user-container">
             <Link to={"/info"}>
               <div className="user_name">
                 <img src={popcorn} />
-                {userInfo.mem_name}
+                {userContext.mem_name}
               </div>
             </Link>
             <Button
@@ -140,8 +133,6 @@ export default function Header() {
         <Login
           show={showLogin}
           onHide={handleCloseLogin}
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
           setIsLoggedIn={setIsLoggedIn}
           onShowSignup={handleShowSignup}
         />

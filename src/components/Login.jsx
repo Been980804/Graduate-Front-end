@@ -12,8 +12,6 @@ import id from "/src/assets/images/profile.png";
 export default function Login({
 	show,
 	onHide,
-	userInfo,
-	setUserInfo,
 	setIsLoggedIn,
 	onShowSignup,
 }) {
@@ -39,13 +37,12 @@ export default function Login({
 					alert("환영합니다.");
 					sessionStorage.setItem("isLoggedIn", true);
 					setIsLoggedIn(true);
-					setUserInfo({
+					setUserContext({
 						mem_class: result.data.resMap.mem_class,
 						mem_id: result.data.resMap.mem_id,
 						mem_name: result.data.resMap.mem_name,
 						mem_no: result.data.resMap.mem_no,
 					});
-					setUserContext(userInfo);
 					navigate("/");
 				} else {
 					alert("ID 혹은 PW가 일치하지 않습니다.");
