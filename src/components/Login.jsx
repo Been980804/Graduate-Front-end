@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Header.css";
+import { useUserState } from "../contexts/UserContext";
 import pwd from "/src/assets/images/password.png";
 import id from "/src/assets/images/profile.png";
 
@@ -17,6 +18,7 @@ export default function Login({
 }) {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
+	const [, setUserContext] = useUserState();
 	async function handleLogin(data) {
 		await axios({
 			method: "post",
@@ -35,7 +37,7 @@ export default function Login({
 				if (result.common.res_code === 200) {
 					alert("환영합니다.");
 					sessionStorage.setItem("isLoggedIn", true);
-					console.log(result);
+
 					setIsLoggedIn(true);
 					setUserInfo({
 						mem_class: result.data.resMap.mem_class,
@@ -43,6 +45,7 @@ export default function Login({
 						mem_name: result.data.resMap.mem_name,
 						mem_no: result.data.resMap.mem_no,
 					});
+					setUserContext(userInfo);
 					navigate("/");
 				} else {
 					alert("ID 혹은 PW가 일치하지 않습니다.");

@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Header.css";
 import logo from "../assets/images/logo.png";
+import { useUserState } from "../contexts/UserContext";
 import Login from "./Login";
 import Search from "./Search";
 import loginImg from "/src/assets/images/login.png";
@@ -18,6 +19,7 @@ export default function Header() {
 		mem_class: "",
 		mem_id: "",
 	});
+	const [userContext] = useUserState();
 
 	function handleClose() {
 		setShow(false);
@@ -50,6 +52,25 @@ export default function Header() {
 		const storedInfo = sessionStorage.getItem("isLoggedIn");
 		if (storedInfo) {
 			setIsLoggedIn(true);
+		}
+		async function handleAuth() {
+			await axios({
+				method: "get",
+				url: "http://localhost:8080/user/auth",
+				withCredentials: true,
+			})
+				.then((response) => {
+					if (response.status === 200) return response.data;
+					else return;
+				})
+				.then((result) => {
+					if (result.common.res_code === 200) {
+						sessionStorage.setItem("isLoggedIn", true);
+					} else {
+						alert("ID 혹은 PW가 일치하지 않습니다.");
+						return;
+					}
+				});
 		}
 	}, []);
 	return (
