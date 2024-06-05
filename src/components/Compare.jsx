@@ -14,7 +14,6 @@ export default function Compare({ show, onHide, movieData }) {
 	} = useForm();
 	const [schedule, setSchedule] = useState([]);
 	async function handleClick(data) {
-		console.log(data);
 		const scheduleRes = await axios({
 			method: "post",
 			url: "http://localhost:8080/schedule/compare",
@@ -44,15 +43,11 @@ export default function Compare({ show, onHide, movieData }) {
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>날짜</Form.Label>
-						<input type="date" {...register("date", { required: true })} />
+						<input type="date" {...register("date")} />
 					</Form.Group>
 					<button onClick={handleSubmit(handleClick)}>검색</button>
 					{/* <img src={cgv_logo}/> */}
-					<Schedule schedules={schedule} th_brand="1" />
-					{/* <img src={lotte_logo}/> */}
-					<Schedule schedules={schedule} th_brand="2" />
-					{/* <img src={mega_logo}/> */}
-					<Schedule schedules={schedule} th_brand="3" />
+					<Schedule schedules={schedule} />
 				</Modal.Body>
 			</Modal>
 		</>

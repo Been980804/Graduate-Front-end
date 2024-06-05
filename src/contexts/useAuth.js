@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 // 세션을 통해 사용자의 정보를 받아오고 인증하는 custom hook
 export default function useAuth() {
 	const [user, setUser] = useState({
-		isLogin: false,
 		mem_no: "",
 		mem_name: "",
 		mem_class: "",
 		mem_id: "",
 	});
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	useEffect(() => {
 		async function handleAuth() {
@@ -26,7 +26,6 @@ export default function useAuth() {
 				.then((userInfo) => {
 					if (userInfo) {
 						setUser({
-							isLogin: true,
 							mem_no: userInfo.mem_no,
 							mem_name: userInfo.mem_name,
 							mem_class: userInfo.mem_class,
@@ -36,7 +35,7 @@ export default function useAuth() {
 				});
 		}
 		handleAuth();
-	}, []);
+	}, [isLoggedIn]);
 
 	return user;
 }

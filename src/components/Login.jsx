@@ -1,17 +1,23 @@
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { useForm } from "react-hook-form";
+import "../assets/css/Header.css";
 import pwd from "/src/assets/images/password.png";
 import id from "/src/assets/images/profile.png";
 
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-
-export default function Login({ show, onHide, onShowSignup }) {
+export default function Login() {
 	const { register, handleSubmit } = useForm();
-	const navigate = useNavigate();
+	const [show, setShow] = useState(false);
 
+	function handleClose() {
+		setShow(false);
+	}
+	function handleShow() {
+		setShow(true);
+	}
 	async function handleLogin(data) {
 		await axios({
 			method: "post",
@@ -24,26 +30,34 @@ export default function Login({ show, onHide, onShowSignup }) {
 		})
 			.then((response) => {
 				if (response.status === 200) return response.data;
+				else return;
 			})
 			.then((result) => {
 				if (result.common.res_code === 200) {
 					alert("환영합니다.");
-					localStorage.setItem("isAuth", true);
+					sessionStorage.setItem("isLoggedIn", true);
+					setIsLoggedIn(true);
+					setUserInfo({
+						mem_class: result.data.mem_class,
+						mem_id: result.data.mem_id,
+						mem_name: result.data.mem_name,
+						mem_no: result.data.mem_no,
+					});
 					navigate("/");
 				} else {
 					alert("ID 혹은 PW가 일치하지 않습니다.");
+					return;
 				}
 			});
-		onHide();
+		handleClose();
+	}
+	function handleJoin() {
+		//join 관련 처리
+		handleClose();
 	}
 
-	function handleSignup() {
-		//join 관련 처리
-		onHide();
-		onShowSignup();
-	}
 	return (
-		<Modal show={show} onHide={onHide} centered>
+		<Modal show={show} onHide={handleClose} centered>
 			<Modal.Header>
 				<Modal.Title>Login</Modal.Title>
 			</Modal.Header>
@@ -70,7 +84,7 @@ export default function Login({ show, onHide, onShowSignup }) {
 				</Form.Group>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button variant="secondary" onClick={handleSignup}>
+				<Button variant="secondary" onClick={handleJoin}>
 					회원가입
 				</Button>
 				<Button variant="primary" onClick={handleSubmit(handleLogin)}>
