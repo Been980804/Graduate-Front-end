@@ -26,6 +26,28 @@ export default function NotiDetail() {
   function handleClose() {
     setShow(false);
   }
+  async function deleteQna() {
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/board/deleteQna",
+      withCredentials: true,
+      data: {
+        qes_mem_no: userContext.mem_no,
+        qna_no: qnaDetail.qna_no,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) return response.data;
+      })
+      .then((result) => {
+        if (result.common.res_code === 200) {
+          alert("문의가 삭제되었습니다.");
+          navigate("/qna");
+        } else {
+          console.log("문의 삭제 실패");
+        }
+      });
+  }
   return (
     <div className="boardDetail-container">
       <strong className="board-header">Q&A</strong>
@@ -70,7 +92,7 @@ export default function NotiDetail() {
         )}
         <div className="goBoardBtn">
           {isUserAdmin && <button onClick={() => qnaAnwer()}>답변하기</button>}
-          <QnaAnswer show={show} onHide={handleClose} qna={qnaDetail}/>
+          <QnaAnswer show={show} onHide={handleClose} qna={qnaDetail} />
           {isCurrentUserAuthor && (
             <button onClick={() => deleteQna()}>삭제하기</button>
           )}

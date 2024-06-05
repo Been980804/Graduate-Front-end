@@ -12,30 +12,32 @@ export default function Qna({ show, onHide }) {
   const navigate = useNavigate();
   const [userContext] = useUserState();
 
-  async function handleQna(data){
-      await axios({
-          method: "post",
-          url: "http://localhost:8080/board/createQna",
-          withCredentials: true,
-          data: {
-              qes_mem_no : userContext.mem_no,
-              qes_title : data.qes_title,
-              qes_content : data.qes_content,
-          }
-      }).then((response) => {
-          if(response.status === 200) return response.data;
-      }).then((result) => {
-          if(result.common.res_code === 200){
-              alert('문의가 작성되었습니다.');
-              navigate("/qna");
-          } else{
-              console.log('문의 작성 실패');
-          }
+  async function handleQna(data) {
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/board/createQna",
+      withCredentials: true,
+      data: {
+        qes_mem_no: userContext.mem_no,
+        qes_title: data.qes_title,
+        qes_content: data.qes_content,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) return response.data;
+      })
+      .then((result) => {
+        if (result.common.res_code === 200) {
+          alert("문의가 작성되었습니다.");
+          navigate("/qna");
+        } else {
+          console.log("문의 작성 실패");
+        }
       });
-      onHide();
+    onHide();
   }
 
-  function handlecancle(){
+  function handlecancle() {
     onHide();
   }
   return (
