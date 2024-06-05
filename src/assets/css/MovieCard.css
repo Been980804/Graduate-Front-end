@@ -1,5 +1,7 @@
 .card {
 	width: 200px;
+	margin: 7px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
 }
 .card a {
 	text-decoration: none;
