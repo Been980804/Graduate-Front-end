@@ -38,7 +38,6 @@ export default function Login({
 				if (result.common.res_code === 200) {
 					alert("환영합니다.");
 					sessionStorage.setItem("isLoggedIn", true);
-
 					setIsLoggedIn(true);
 					setUserInfo({
 						mem_class: result.data.resMap.mem_class,
