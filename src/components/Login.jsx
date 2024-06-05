@@ -1,23 +1,22 @@
 import axios from "axios";
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "../assets/css/Header.css";
 import pwd from "/src/assets/images/password.png";
 import id from "/src/assets/images/profile.png";
 
-export default function Login() {
+export default function Login({
+	show,
+	onHide,
+	userInfo,
+	setUserInfo,
+	setIsLoggedIn,
+}) {
 	const { register, handleSubmit } = useForm();
-	const [show, setShow] = useState(false);
-
-	function handleClose() {
-		setShow(false);
-	}
-	function handleShow() {
-		setShow(true);
-	}
+	const navigate = useNavigate();
 	async function handleLogin(data) {
 		await axios({
 			method: "post",
@@ -36,12 +35,13 @@ export default function Login() {
 				if (result.common.res_code === 200) {
 					alert("환영합니다.");
 					sessionStorage.setItem("isLoggedIn", true);
+					console.log(result);
 					setIsLoggedIn(true);
 					setUserInfo({
-						mem_class: result.data.mem_class,
-						mem_id: result.data.mem_id,
-						mem_name: result.data.mem_name,
-						mem_no: result.data.mem_no,
+						mem_class: result.data.resMap.mem_class,
+						mem_id: result.data.resMap.mem_id,
+						mem_name: result.data.resMap.mem_name,
+						mem_no: result.data.resMap.mem_no,
 					});
 					navigate("/");
 				} else {
@@ -49,15 +49,15 @@ export default function Login() {
 					return;
 				}
 			});
-		handleClose();
+		onHide();
 	}
 	function handleJoin() {
 		//join 관련 처리
-		handleClose();
+		onHide();
 	}
 
 	return (
-		<Modal show={show} onHide={handleClose} centered>
+		<Modal show={show} onHide={onHide} centered>
 			<Modal.Header>
 				<Modal.Title>Login</Modal.Title>
 			</Modal.Header>

@@ -1,23 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Header.css";
 import logo from "../assets/images/logo.png";
+import Login from "./Login";
 import Search from "./Search";
 import loginImg from "/src/assets/images/login.png";
 import logoutImg from "/src/assets/images/logout.png";
-import pwd from "/src/assets/images/password.png";
-import id from "/src/assets/images/profile.png";
-
 export default function Header() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const { register, handleSubmit } = useForm();
-	const [show, setShow] = useState(false);
 	const navigate = useNavigate();
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [show, setShow] = useState(false);
 	const [userInfo, setUserInfo] = useState({
 		mem_no: "",
 		mem_name: "",
@@ -30,40 +24,6 @@ export default function Header() {
 	}
 	function handleShow() {
 		setShow(true);
-	}
-
-	async function handleLogin(data) {
-		await axios({
-			method: "post",
-			url: "http://localhost:8080/user/login",
-			withCredentials: true,
-			data: {
-				mem_id: data.mem_id,
-				pwd: data.pwd,
-			},
-		})
-			.then((response) => {
-				if (response.status === 200) return response.data;
-				else return;
-			})
-			.then((result) => {
-				if (result.common.res_code === 200) {
-					alert("환영합니다.");
-					sessionStorage.setItem("isLoggedIn", true);
-					setIsLoggedIn(true);
-					setUserInfo({
-						mem_class: result.data.mem_class,
-						mem_id: result.data.mem_id,
-						mem_name: result.data.mem_name,
-						mem_no: result.data.mem_no,
-					});
-					navigate("/");
-				} else {
-					alert("ID 혹은 PW가 일치하지 않습니다.");
-					return;
-				}
-			});
-		handleClose();
 	}
 
 	async function handleLogout() {
@@ -84,10 +44,6 @@ export default function Header() {
 					alert("Logout");
 				}
 			});
-	}
-	function handleJoin() {
-		//join 관련 처리
-		handleClose();
 	}
 
 	useEffect(() => {
@@ -130,44 +86,13 @@ export default function Header() {
 					</div>
 				)}
 
-				<Modal show={show} onHide={handleClose} centered>
-					<Modal.Header>
-						<Modal.Title>Login</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<Form.Group>
-							<Form.Label>
-								<img src={id} style={{ width: "25px", margin: "0 0 0 5px" }} />
-							</Form.Label>
-							<Form.Control
-								placeholder="ID"
-								autoFocus
-								{...register("mem_id", { required: true })}
-							/>
-						</Form.Group>
-						<Form.Group>
-							<Form.Label>
-								<img
-									src={pwd}
-									style={{ width: "25px", margin: "10px 0 0 5px" }}
-								/>
-							</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Password"
-								{...register("pwd", { required: true })}
-							/>
-						</Form.Group>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleJoin}>
-							회원가입
-						</Button>
-						<Button variant="primary" onClick={handleSubmit(handleLogin)}>
-							로그인
-						</Button>
-					</Modal.Footer>
-				</Modal>
+				<Login
+					show={show}
+					onHide={handleClose}
+					userInfo={userInfo}
+					setUserInfo={setUserInfo}
+					setIsLoggedIn={setIsLoggedIn}
+				/>
 			</div>
 		</header>
 	);
