@@ -13,12 +13,6 @@ export default function Header() {
 	const navigate = useNavigate();
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [show, setShow] = useState(false);
-	const [userInfo, setUserInfo] = useState({
-		mem_no: "",
-		mem_name: "",
-		mem_class: "",
-		mem_id: "",
-	});
 	const [userContext, setUserContext] = useUserState();
 
 	function handleClose() {
@@ -66,13 +60,13 @@ export default function Header() {
 				.then((result) => {
 					if (result.common.res_code === 200) {
 						sessionStorage.setItem("isLoggedIn", true);
-						setUserInfo({
+
+						setUserContext({
 							mem_class: result.data.mem_class,
 							mem_id: result.data.mem_id,
 							mem_name: result.data.mem_name,
 							mem_no: result.data.mem_no,
 						});
-						setUserContext(userInfo);
 					} else {
 						sessionStorage.removeItem("isLoggedIn");
 						setUserContext({
@@ -85,7 +79,6 @@ export default function Header() {
 				});
 		}
 		handleAuth();
-		console.log(userContext);
 	}, []);
 	return (
 		<header>
@@ -102,7 +95,7 @@ export default function Header() {
 
 				{isLoggedIn ? (
 					<div className="user-container">
-						<div>{userInfo.mem_name}</div>
+						<div>{userContext.mem_name}</div>
 						<Button
 							onClick={handleLogout}
 							variant="secondary"
@@ -121,13 +114,7 @@ export default function Header() {
 					</div>
 				)}
 
-				<Login
-					show={show}
-					onHide={handleClose}
-					userInfo={userInfo}
-					setUserInfo={setUserInfo}
-					setIsLoggedIn={setIsLoggedIn}
-				/>
+				<Login show={show} onHide={handleClose} setIsLoggedIn={setIsLoggedIn} />
 			</div>
 		</header>
 	);

@@ -45,7 +45,12 @@ export default function Login({
 						mem_name: result.data.resMap.mem_name,
 						mem_no: result.data.resMap.mem_no,
 					});
-					setUserContext(userInfo);
+					setUserContext({
+						mem_class: result.data.resMap.mem_class,
+						mem_id: result.data.resMap.mem_id,
+						mem_name: result.data.resMap.mem_name,
+						mem_no: result.data.resMap.mem_no,
+					});
 					navigate("/");
 				} else {
 					alert("ID 혹은 PW가 일치하지 않습니다.");

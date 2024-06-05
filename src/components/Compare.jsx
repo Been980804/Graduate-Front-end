@@ -2,9 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import Schedule from "./Schedule";
-
 export default function Compare({ show, onHide, movieData }) {
 	const {
 		register,
@@ -12,6 +13,7 @@ export default function Compare({ show, onHide, movieData }) {
 		watch,
 		formState: { errors },
 	} = useForm();
+	const [date, setDate] = useState(new Date());
 	const [schedule, setSchedule] = useState([]);
 	async function handleClick(data) {
 		const scheduleRes = await axios({
@@ -43,7 +45,10 @@ export default function Compare({ show, onHide, movieData }) {
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>날짜</Form.Label>
-						<input type="date" {...register("date")} />
+						<DatePicker
+							selected={date}
+							dateFormat={"yyyy-MM-dd"}
+							onChange={(date) => setDate(date)}></DatePicker>
 					</Form.Group>
 					<button onClick={handleSubmit(handleClick)}>검색</button>
 					{/* <img src={cgv_logo}/> */}

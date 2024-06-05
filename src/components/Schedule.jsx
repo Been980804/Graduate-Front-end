@@ -1,4 +1,8 @@
+import { useUserState } from "../contexts/UserContext";
+
 export default function Schedule({ schedules }) {
+	const [userContext, setUserContext] = useUserState();
+	console.log(userContext);
 	//schedules {th_brand, th_name, hall_name, hall_seats, sch_start, }
 	const thSet = new Set();
 	schedules.map((schedule) => {
