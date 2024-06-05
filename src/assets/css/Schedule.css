@@ -1,0 +1,9 @@
+.card {
+	justify-content: center;
+}
+.cards-wrapper {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	justify-items: center;
+}

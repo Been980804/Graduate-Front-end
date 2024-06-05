@@ -1,6 +1,7 @@
 // http://localhost:8080/user/join
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
+
 export default function JoinPage() {
 	const {
 		register,
@@ -27,7 +28,7 @@ export default function JoinPage() {
 	return (
 		<>
 			<div className="form-wrapper" onSubmit={handleSubmit(handleJoin)}>
-				<form onSubmit={handleSubmit} className="info">
+				<Form onSubmit={handleSubmit} className="info">
 					<div>
 						<label>id</label>
 						<input className="id" {...register("id", { required: true })} />
@@ -65,7 +66,7 @@ export default function JoinPage() {
 						<input className="birth" type="date" {...register("birth")} />
 					</div>
 					<button>가입</button>
-				</form>
+				</Form>
 			</div>
 		</>
 	);
