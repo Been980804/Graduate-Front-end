@@ -5,7 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
-import Schedule from "./Schedule";
 export default function Compare({ show, onHide, movieData }) {
 	const {
 		register,
@@ -16,6 +15,7 @@ export default function Compare({ show, onHide, movieData }) {
 	const [date, setDate] = useState(new Date());
 	const [schedule, setSchedule] = useState([]);
 	async function handleClick(data) {
+		console.log(data);
 		const scheduleRes = await axios({
 			method: "post",
 			url: "http://localhost:8080/schedule/compare",
@@ -25,7 +25,7 @@ export default function Compare({ show, onHide, movieData }) {
 				th_region: data.region,
 			},
 			withCredentials: true,
-		}).then((response) => response.data.data.scheduleList);
+		}).then((response) => console.log(response));
 		setSchedule(scheduleRes);
 	}
 
@@ -48,11 +48,12 @@ export default function Compare({ show, onHide, movieData }) {
 						<DatePicker
 							selected={date}
 							dateFormat={"yyyy-MM-dd"}
-							onChange={(date) => setDate(date)}></DatePicker>
+							onChange={(date) => setDate(date)}
+							{...register("date")}></DatePicker>
 					</Form.Group>
 					<button onClick={handleSubmit(handleClick)}>검색</button>
 					{/* <img src={cgv_logo}/> */}
-					<Schedule schedules={schedule} />
+					{/* <Schedule schedules={schedule} /> */}
 				</Modal.Body>
 			</Modal>
 		</>

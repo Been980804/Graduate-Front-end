@@ -9,13 +9,7 @@ import { useUserState } from "../contexts/UserContext";
 import pwd from "/src/assets/images/password.png";
 import id from "/src/assets/images/profile.png";
 
-export default function Login({
-	show,
-	onHide,
-	userInfo,
-	setUserInfo,
-	setIsLoggedIn,
-}) {
+export default function Login({ show, onHide, setIsLoggedIn }) {
 	const { register, handleSubmit } = useForm();
 	const navigate = useNavigate();
 	const [, setUserContext] = useUserState();
@@ -39,12 +33,6 @@ export default function Login({
 					sessionStorage.setItem("isLoggedIn", true);
 
 					setIsLoggedIn(true);
-					setUserInfo({
-						mem_class: result.data.resMap.mem_class,
-						mem_id: result.data.resMap.mem_id,
-						mem_name: result.data.resMap.mem_name,
-						mem_no: result.data.resMap.mem_no,
-					});
 					setUserContext({
 						mem_class: result.data.resMap.mem_class,
 						mem_id: result.data.resMap.mem_id,
