@@ -1,9 +1,15 @@
+import axios from "axios";
 import React, { useState } from "react";
 import "../assets/css/Review.css";
 import basket from "../assets/images/basket.png";
-export default function ReviewForm({ ...reviewList }) {
+import { useUserState } from "../contexts/UserContext.jsx";
+
+export default function Review({ mov_no, ...reviewList }) {
   const [score, setScore] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
+  const [userContext] = useUserState();
+
+  const isUserAdmin = userContext && userContext.mem_class == 9;
 
   const handleStarClick = (index) => {
     setScore(index + 1);
@@ -15,32 +21,79 @@ export default function ReviewForm({ ...reviewList }) {
       return;
     }
 
-    // const reviewData = {
-    //   mov_no,
-    //   mem_no,
-    //   score,
-    //   reviewContent,
-    // };
-    // onSubmit() =
-    // axios({
-    //   url: "http://localhost:8080/detail/createReview",
-    //   method: "post",
-    //   withCredentials: true,
-    //   data:{
-    //     mov_no: mov_no,
-    //     mem_no: mem_no,
-    //     score: data.score,
-    //     reviewContent: data.reviewContent,
-    //   }
-
-    // }).then((response) => {
-    //     console.log('리뷰작성 완료');
-    // })
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/detail/createReview",
+      withCredentials: true,
+      data: {
+        mem_no: userContext.mem_no,
+        mov_no,
+        rev_rating: score,
+        rev_content: reviewContent,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) return response.data;
+      })
+      .then((result) => {
+        if (result.common.res_code === 200) {
+          alert("리뷰가 작성되었습니다.");
+          navigate("/noti");
+        } else {
+          console.log("리뷰 작성 실패");
+        }
+      });
 
     // 초기화
     setScore(0);
     setReviewContent("");
   };
+
+  async function deleteReview(review) {
+    if (userContext.mem_class == 9) {
+      // 관리자 삭제
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/manage/manageReview",
+        withCredentials: true,
+        data: {
+          rev_no: review.rev_no,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.data;
+        })
+        .then((result) => {
+          if (result.common.res_code === 200) {
+            alert("관리자 권한으로 리뷰가 삭제되었습니다.");
+          } else {
+            console.log("리뷰 삭제 실패(관리자)");
+          }
+        });
+    } else {
+      // 유저 삭제
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/detail/deleteReview",
+        withCredentials: true,
+        data: {
+          rev_no: review.rev_no,
+          mov_no,
+          mem_no: userContext.mem_no,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.data;
+        })
+        .then((result) => {
+          if (result.common.res_code === 200) {
+            alert("리뷰가 삭제되었습니다.");
+          } else {
+            console.log("리뷰 삭제 실패");
+          }
+        });
+    }
+  }
   const reviews = reviewList.reviewList;
   return (
     <div className="review_form">
@@ -76,6 +129,8 @@ export default function ReviewForm({ ...reviewList }) {
         {/* for문 돌려서 모든 리뷰 출력 */}
         {reviews &&
           reviews.map((review) => {
+            const isCurrentUserAuthor =
+              userContext && userContext.mem_no === review.mem_no;
             return (
               <>
                 <div className="reviewItem">
@@ -92,7 +147,12 @@ export default function ReviewForm({ ...reviewList }) {
                     </div>
                     <div className="reviewDate">{review.reg_date}</div>
                     <div className="reviewDelete">
-                      <img src={basket} />
+                      {(isUserAdmin || isCurrentUserAuthor) && (
+                        <img
+                          src={basket}
+                          onClick={() => deleteReview(review)}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

@@ -3,18 +3,22 @@ import { Link, useLoaderData } from "react-router-dom";
 import "../assets/css/Board.css";
 import { extractDateOnly } from "../util/functionUtil";
 import { useState } from "react";
+import Noti from "../components/Noti.jsx";
+import { useUserState } from "../contexts/UserContext.jsx";
 
 export default function NotiBoard() {
   const response = useLoaderData();
   const notiList = response.notiList;
-	const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [userContext] = useUserState();
 
-  function handleShow(){
-    // if(mem_class == 9){
-    //   setShow(true);
-    // } else{
-    //   alert('관리자만 이용 가능합니다.');
-    // }
+  const isUserAdmin = userContext && userContext.mem_class == 9;
+
+  function handleShow() {
+    setShow(true);
+  }
+  function handleClose() {
+    setShow(false);
   }
 
   return (
@@ -50,7 +54,8 @@ export default function NotiBoard() {
           })}
       </div>
       <div className="boardBtn">
-        <button onClick={handleShow}>공지작성</button>
+        {isUserAdmin &&<button onClick={handleShow}>공지작성</button>}
+        <Noti show={show} onHide={handleClose} />
       </div>
     </div>
   );
