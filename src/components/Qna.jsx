@@ -5,17 +5,20 @@ import { Button } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useUserState } from "../contexts/UserContext.jsx";
 
 export default function Qna({ show, onHide }) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const [userContext] = useUserState();
 
   async function handleQna(data){
       await axios({
           method: "post",
-          url: "http://localhost8080/board/createQna",
+          url: "http://localhost:8080/board/createQna",
           withCredentials: true,
           data: {
+              qes_mem_no : userContext.mem_no,
               qes_title : data.qes_title,
               qes_content : data.qes_content,
           }
