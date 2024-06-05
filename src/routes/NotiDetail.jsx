@@ -16,13 +16,13 @@ export default function NotiDetail() {
     navigate('/noti');
   }
 
-  async function deleteNoti(noti_no){
+  async function deleteNoti(){
     await axios({
       method: "post",
       url: "http://localhost:8080/manage/deleteNoti",
       withCredentials: true,
       data: {
-       noti_no : noti_no,
+       noti_no : notiDetail.noti_no,
       }
   }). then((response) => {
     if (response.status === 200) return response.data;
@@ -63,7 +63,7 @@ export default function NotiDetail() {
           </span>
         </div>
         <div className="goBoardBtn">
-          {isUserAdmin && <button onClick={() => deleteNoti(notiDetail.noti_no)}>삭제하기</button>}
+          {isUserAdmin && <button onClick={() => deleteNoti}>삭제하기</button>}
           <button onClick={() => goNotiBoard()}>목록으로</button>
         </div>
       </div>
