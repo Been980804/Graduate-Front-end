@@ -10,12 +10,13 @@ import { useUserState } from "../contexts/UserContext.jsx";
 export default function Qna({ show, onHide }) {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const userContext = useUserState();
+  const [userContext] = useUserState();
 
   async function handleNoti(data) {
+    console.log(userContext.mem_no);
     await axios({
       method: "post",
-      url: "http://localhost8080/manage/createNoti",
+      url: "http://localhost:8080/manage/createNoti",
       withCredentials: true,
       data: {
         mem_no : userContext.mem_no,
