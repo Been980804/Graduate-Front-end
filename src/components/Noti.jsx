@@ -13,7 +13,6 @@ export default function Qna({ show, onHide }) {
   const [userContext] = useUserState();
 
   async function handleNoti(data) {
-    console.log(userContext.mem_no);
     await axios({
       method: "post",
       url: "http://localhost:8080/manage/createNoti",

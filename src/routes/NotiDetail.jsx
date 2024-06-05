@@ -2,16 +2,40 @@ import axios from "axios";
 import { useLoaderData , useNavigate  } from "react-router-dom";
 import "../assets/css/BoardDetail.css";
 import { extractDateOnly } from "../util/functionUtil";
+import { useUserState } from "../contexts/UserContext.jsx";
 
 export default function NotiDetail() {
   const response = useLoaderData();
   const notiDetail = response.notiDetail;
   const navigate = useNavigate();
+  const [userContext] = useUserState();
+
+  const isUserAdmin = userContext && userContext.mem_class == 9;
 
   function goNotiBoard(){
     navigate('/noti');
   }
 
+  async function deleteNoti(noti_no){
+    await axios({
+      method: "post",
+      url: "http://localhost:8080/manage/deleteNoti",
+      withCredentials: true,
+      data: {
+       noti_no : noti_no,
+      }
+  }). then((response) => {
+    if (response.status === 200) return response.data;
+  })
+  .then((result) => {
+    if (result.common.res_code === 200) {
+      alert("공지가 삭제되었습니다.");
+      navigate("/noti");
+    } else {
+      console.log("공지 삭제 실패");
+    }
+  });
+  }
   return (
     <div className="boardDetail-container">
       <strong className="board-header">공지사항</strong>
@@ -39,6 +63,7 @@ export default function NotiDetail() {
           </span>
         </div>
         <div className="goBoardBtn">
+          {isUserAdmin && <button onClick={() => deleteNoti(notiDetail.noti_no)}>삭제하기</button>}
           <button onClick={() => goNotiBoard()}>목록으로</button>
         </div>
       </div>

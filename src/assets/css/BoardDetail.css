@@ -36,12 +36,13 @@
 .goBoardBtn {
   display: flex;
   justify-content: right;
-  margin: 20px 100px;
+  margin: 20px 50px;
   button {
     width: 80px;
     height: 40px;
     border-radius: 8px;
     background-color: #c7d6f3;
+    margin-left: 10px;
   }
 }
 .qna_answer{
