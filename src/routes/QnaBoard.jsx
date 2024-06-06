@@ -1,9 +1,9 @@
 import axios from "axios";
-import { Link, useLoaderData } from "react-router-dom";
-import "../assets/css/Board.css";
-import { extractDateOnly } from "../util/functionUtil.js";
-import Qna from "../components/Qna.jsx";
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import "../assets/css/Board.css";
+import Pagination from "../components/Pagination.jsx";
+import Qna from "../components/Qna.jsx";
 import { useUserState } from "../contexts/UserContext.jsx";
 
 export default function QnaBoard() {
@@ -11,12 +11,13 @@ export default function QnaBoard() {
   const qnaList = response.qnaList;
   const [show, setShow] = useState(false);
   const [userContext] = useUserState();
+  console.log(qnaList);
 
   function handleShow() {
     if (userContext.mem_no != "") {
       setShow(true);
-    }else{
-      alert('로그인 후 이용해주세요.');
+    } else {
+      alert("로그인 후 이용해주세요.");
     }
   }
   function handleClose() {
@@ -33,25 +34,7 @@ export default function QnaBoard() {
           <div className="board-user">작성자</div>
           <div className="board-regDate">작성일</div>
         </div>
-        {qnaList &&
-          qnaList.map((qna, idx) => {
-            return (
-              <Link
-                to={`/detailQna/${qna.qna_no}`}
-                key={qna.qna_no}
-                className="board-link"
-              >
-                <div className="board-column">
-                  <div className="board-num">{idx + 1}</div>
-                  <div className="board-title">{qna.qes_title}</div>
-                  <div className="board-user">{qna.mem_name}</div>
-                  <div className="board-regDate">
-                    {extractDateOnly(qna.reg_date)}
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+        <Pagination items={qnaList} itemsPerPage={10} type={"qna"} />
       </div>
       <div className="boardBtn">
         <button onClick={handleShow}>문의하기</button>
