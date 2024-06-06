@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import "../assets/css/Pagination.css";
 import exclamation from "../assets/images/exclamation.png";
 import Pagination from "../components/Pagination";
-
 export default function SearchPage() {
 	const { state } = useLocation();
 	const movList = state?.searchList;
@@ -32,7 +32,7 @@ export default function SearchPage() {
 							? `"${searchTitle}" 에 대한 검색 결과입니다.`
 							: "모든 영화를 가져옵니다."}
 					</h2>
-					<Pagination items={movList} itemsPerPage={10} />
+					<Pagination items={movList} itemsPerPage={10} type={"mov"} />
 				</div>
 			) : (
 				<div
