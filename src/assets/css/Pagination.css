@@ -6,12 +6,10 @@
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
 }
-
-.page-container {
+.pageContainer{
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   ul {
     display: flex;
   }
@@ -19,7 +17,6 @@
 .pagingBox {
   position: relative;
   justify-content: center;
-  margin-top: 10px;
 }
 
 .pagination-wrapper {

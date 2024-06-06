@@ -20,6 +20,10 @@ export default function Review({ mov_no, ...reviewList }) {
       alert("별점과 리뷰를 모두 입력해주세요.");
       return;
     }
+    if(userContext.mem_no == ""){
+      alert('로그인 후 이용해주세요.');
+      return;
+    }
 
     await axios({
       method: "post",
