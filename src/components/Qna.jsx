@@ -29,6 +29,7 @@ export default function Qna({ show, onHide }) {
       .then((result) => {
         if (result.common.res_code === 200) {
           alert("문의가 작성되었습니다.");
+          window.location.reload();
           navigate("/qna");
         } else {
           console.log("문의 작성 실패");

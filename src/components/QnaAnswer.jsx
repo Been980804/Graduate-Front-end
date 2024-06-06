@@ -29,6 +29,7 @@ export default function QnaAnswer({ show, onHide, qna }) {
       .then((result) => {
         if (result.common.res_code === 200) {
           alert("답변 완료");
+          window.location.reload();
           navigate("/qna");
         } else {
           console.log("답변 실패");
