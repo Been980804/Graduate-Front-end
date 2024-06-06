@@ -12,6 +12,7 @@
     flex-grow: 1;
     margin: 0 10px;
     width: 100%;
+    justify-content: center;
   }
   
   .day-wrapper {
@@ -24,14 +25,14 @@
     font-size: 12px;
     font-weight: bold;
     position: relative;
-    top: 0px;
+    top: -3px;
   }
   
   .day {
     padding: 5px;
     margin: 2px;
     text-align: center;
-    width: 140px;
+    width: 145px;
     position: relative;
     bottom: 0;
   }
