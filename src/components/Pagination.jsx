@@ -68,8 +68,9 @@ export default function Pagination({ items, itemsPerPage, type }) {
   return (
     <>
       <div className="pageContainer">
-        {items && <Items currentItems={currentItems} type={type} />}
-
+        <div  className={type === "mov" ? "cards-wrapper" : ""}>
+          {items && <Items currentItems={currentItems} type={type} />}
+        </div>
         <ReactPaginate
           className="pagingBox"
           nextLabel=">"
