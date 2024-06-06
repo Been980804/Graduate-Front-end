@@ -4,71 +4,118 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import Schedule from "./Schedule";
+import "../assets/css/Compare.css"; // 스타일을 위한 CSS 파일 추가
 
 export default function Compare({ show, onHide, movieData }) {
-  const { register, watch } = useForm({
+  const { register, setValue, watch } = useForm({
     defaultValues: {
-      date: null,
-      region: "부평구", // 기본값 설정
+      date: new Date().toISOString().slice(0, 10),
     },
   });
   const [schedule, setSchedule] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState("부평구");
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().slice(0, 10));
+  const [startDate, setStartDate] = useState(new Date("2024-05-27").toISOString().slice(0, 10));
+  const [endDate, setEndDate] = useState(new Date("2024-06-09").toISOString().slice(0, 10)); // 2주 범위 설정
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
     async function handleLoad() {
+      console.log("Initial Load - selectedDate:", selectedDate);
       try {
         const response = await axios({
           method: "post",
           url: "http://localhost:8080/schedule/compare",
           data: {
             mov_no: movieData.mov_no,
-            sch_date: null,
-            th_region: null,
+            sch_date: selectedDate,
+            th_region: selectedRegion,
           },
           withCredentials: true,
         });
 
         if (response.status === 200 && response.data.common.res_code === 200) {
           setSchedule(response.data.data.scheduleList);
+        } else {
+          setSchedule([]);
         }
       } catch (error) {
         console.error("초기 스케줄 로드 중 오류 발생:", error);
+        setSchedule([]);
       }
     }
 
     handleLoad();
-  }, [movieData.mov_no]);
+  }, [movieData.mov_no, selectedDate, selectedRegion]);
 
-  async function handleSearch({ date, region }) {
-    console.log("Searching with date:", date, "region:", region); // 로깅 추가
+  async function handleSearch() {
+    console.log("Search - selectedDate:", selectedDate);
     try {
       const response = await axios({
         method: "post",
         url: "http://localhost:8080/schedule/compare",
         data: {
           mov_no: movieData.mov_no,
-          sch_date: date || null,
-          th_region: region || null,
+          sch_date: selectedDate,
+          th_region: selectedRegion,
         },
         withCredentials: true,
       });
 
       if (response.status === 200 && response.data.common.res_code === 200) {
-        setSchedule(response.data.data.scheduleList);
+        const receivedRegion = response.data.data.region;
+        if (receivedRegion === selectedRegion) {
+          setSchedule(response.data.data.scheduleList || []);
+        } else {
+          setSchedule([]);
+        }
+      } else {
+        setSchedule([]);
       }
     } catch (error) {
       console.error("스케줄 검색 중 오류 발생:", error);
+      setSchedule([]);
     }
   }
 
   const date = watch("date");
-  const region = watch("region");
 
   useEffect(() => {
-    handleSearch({ date, region });
-  }, [date, region]);
+    setValue("date", selectedDate);
+    console.log("useEffect - setValue:", selectedDate);
+  }, [selectedDate, setValue]);
 
-  const today = new Date().toISOString().slice(0, 10);
+  const handlePrevWeek = () => {
+    const prevStartDate = new Date(startDate);
+    prevStartDate.setDate(prevStartDate.getDate() - 7);
+    setStartDate(prevStartDate.toISOString().slice(0, 10));
+    const prevEndDate = new Date(endDate);
+    prevEndDate.setDate(prevEndDate.getDate() - 7);
+    setEndDate(prevEndDate.toISOString().slice(0, 10));
+  };
+
+  const handleNextWeek = () => {
+    const nextStartDate = new Date(startDate);
+    nextStartDate.setDate(nextStartDate.getDate() + 7);
+    setStartDate(nextStartDate.toISOString().slice(0, 10));
+    const nextEndDate = new Date(endDate);
+    nextEndDate.setDate(nextEndDate.getDate() + 7);
+    setEndDate(nextEndDate.toISOString().slice(0, 10));
+  };
+
+  const getWeekDays = (start) => {
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(start);
+      date.setDate(date.getDate() + i);
+      if (date >= new Date("2024-05-27") && date <= new Date("2024-06-09")) { // 범위 내 날짜만 추가
+        days.push(date.toISOString().slice(0, 10));
+      }
+    }
+    return days;
+  };
+
+  const weekDays = getWeekDays(startDate);
 
   return (
     <Modal show={show} onHide={onHide} size="xl">
@@ -79,27 +126,76 @@ export default function Compare({ show, onHide, movieData }) {
         <Form>
           <Form.Group>
             <Form.Label>지역</Form.Label>
-            <Form.Select {...register("region")}>
-              <option value={"부평구"}>부평구</option>
-              <option value={"서구"}>서구</option>
-            </Form.Select>
+            <div style={{ display: "flex" }}>
+              {["부평구", "서구", "연수구", "미추홀구", "계양구", "중구", "남동구"].map((regionName) => (
+                <div
+                  key={regionName}
+                  style={{
+                    padding: "10px",
+                    border: "1px solid #ccc",
+                    cursor: "pointer",
+                    backgroundColor: selectedRegion === regionName ? "#1f1f1f" : "white",
+                    color: selectedRegion === regionName ? "white" : "black",
+                    width: "160px",
+                    textAlign: "center",
+                  }}
+                  onClick={() => {
+                    setSelectedRegion(regionName);
+                    handleSearch();
+                  }}
+                >
+                  {regionName}
+                </div>
+              ))}
+            </div>
           </Form.Group>
           <Form.Group>
-            <Form.Label>날짜</Form.Label>
-            <div>
-              <input type="date" {...register("date")} />
+            <Form.Label style={{ marginTop: '10px' }}>날짜 <span style={{ fontSize: '15px', fontWeight: 'bold', marginLeft: '55px' }}>{new Date(selectedDate).getFullYear()}</span></Form.Label>
+            <div className="date-navigation">
+              <button type="button" onClick={handlePrevWeek}>{"<"}</button>
+              <div className="week-days">
+                {weekDays.map((day, index) => {
+                  const dateObj = new Date(day);
+                  const dayOfMonth = dateObj.getDate();
+                  const month = dateObj.getMonth() + 1; // 월은 0부터 시작하므로 +1
+                  const isMonthLabelVisible = index === 0 || (index > 0 && new Date(weekDays[index - 1]).getMonth() !== dateObj.getMonth());
+                  const dayOfWeek = dateObj.getDay();
+                  const dayClass = dayOfWeek === 6 ? 'saturday' : dayOfWeek === 0 ? 'sunday' : '';
+
+                  return (
+                    <div key={day} className="day-wrapper" onClick={() => {
+                      setSelectedDate(day);
+                      handleSearch();
+                      console.log("Clicked Date:", day); // 날짜 클릭 시 로그 출력
+                    }}>
+                      {isMonthLabelVisible && <div className="month-label">{month}월</div>}
+                      <div className={`day ${selectedDate === day ? "selected" : ""} ${dayClass}`}>
+                        {dayOfMonth}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <button type="button" onClick={handleNextWeek}>{">"}</button>
             </div>
           </Form.Group>
         </Form>
         <div style={{ margin: "20px", fontSize: "50px" }}>
           <strong>
-            {movieData.mov_title}, {region}, {date ? date : today}
+            {movieData.mov_title}, {selectedRegion}, {selectedDate ? selectedDate : today}
           </strong>
         </div>
-        {/* 스케줄 표시 */}
-        <Schedule schedules={schedule} th_brand={1} />
-        <Schedule schedules={schedule} th_brand={2} />
-        <Schedule schedules={schedule} th_brand={3} />
+        {schedule.length > 0 ? (
+          <>
+            <Schedule schedules={schedule} th_brand={1} />
+            <Schedule schedules={schedule} th_brand={2} />
+            <Schedule schedules={schedule} th_brand={3} />
+          </>
+        ) : (
+          <div style={{ margin: "20px", fontSize: "30px", textAlign: "center" }}>
+            해당 날짜의 스케줄이 없습니다.
+          </div>
+        )}
       </Modal.Body>
     </Modal>
   );

@@ -1,0 +1,51 @@
+.date-navigation {
+    display: flex;
+    align-items: center;
+    button {
+      border: 0;
+      background-color: white;
+    }
+  }
+  
+  .week-days {
+    display: flex;
+    flex-grow: 1;
+    margin: 0 10px;
+    width: 100%;
+  }
+  
+  .day-wrapper {
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  
+  .year-label, .month-label {
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: 0px;
+  }
+  
+  .day {
+    padding: 5px;
+    margin: 2px;
+    text-align: center;
+    width: 140px;
+    position: relative;
+    bottom: 0;
+  }
+  
+  .selected {
+    background-color: rgba(226, 226, 226, 0.582);
+    border-bottom: 2px solid rgb(0, 0, 0);
+  }
+  
+  .saturday {
+    color: blue;
+  }
+  
+  .sunday {
+    color: red;
+}
+  
