@@ -1,6 +1,5 @@
 // 날짜 표현 형식
 export function extractDateOnly(dateString) {
-	console.log(dateString);
 	return dateString.split(" ")[0];
 }
 

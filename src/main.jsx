@@ -51,13 +51,8 @@ const routes = createBrowserRouter([
 				path: "/info",
 				element: <InfoPage />,
 				loader: infoLoader,
-				children: [
-					{
-						path: "/info/mod",
-						element: <ModInfoPage />,
-					},
-				],
 			},
+			{ path: "/info/mod", element: <ModInfoPage /> },
 			{
 				path: "/noti",
 				element: <NotiBoard />,
