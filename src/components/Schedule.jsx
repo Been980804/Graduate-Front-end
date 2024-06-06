@@ -7,7 +7,6 @@ import mega from "../assets/images/megabox_logo.png";
 export default function Schedule({ schedules, th_brand }) {
   let logo;
   let url;
-  let style;
   const theaters = schedules.reduce((acc, obj) => {
     const key = `${obj.th_brand}_${obj.th_name}`;
     if (!acc[key]) {
@@ -64,7 +63,7 @@ export default function Schedule({ schedules, th_brand }) {
     <div className="schedule_container">
       {logo && (
         <div className="logoWrapper" >
-          <img src={logo} alt="Logo" className="brandLogo" style={{height:'70px'}}/>
+          <img src={logo} alt="Logo" className="brandLogo" style={{height:'60px'}}/>
         </div>
       )}
       {Object.keys(theaters).map((theaterKey) => {
