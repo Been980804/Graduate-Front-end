@@ -1,17 +1,21 @@
 import axios from "axios";
+import { useImperativeHandle } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Search.css";
 
-export default function Search() {
+export default function Search({ ref }) {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		watch,
 		formState: { errors },
 	} = useForm();
 	const navigate = useNavigate();
-
+	useImperativeHandle(ref, () => {
+		reset();
+	});
 	async function handleSearch(data) {
 		const search = data.title || "all";
 		await axios({

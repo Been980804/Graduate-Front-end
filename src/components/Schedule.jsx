@@ -1,4 +1,3 @@
-import { Card, ListGroup } from "react-bootstrap";
 import "../assets/css/Schedule.css";
 import cgv from "../assets/images/CGV_logo.png";
 import lotte from "../assets/images/LotteCinema_logo.png";
@@ -52,25 +51,5 @@ export default function Schedule({ schedules, th_brand }) {
 
 		return schStarts;
 	}
-	return (
-		<div className="cards-wrapper">
-			{keys.map((key) => {
-				return (
-					<Card onClick={() => window.open(url)}>
-						<Card.Img src={logo} variant="top" />
-						<Card.Body>
-							<Card.Title>
-								{key.split("_")[1]} {key.split("_")[2].split(" ")[0]}
-							</Card.Title>
-							<ListGroup>
-								{getSch(key).map((sch) => {
-									return <ListGroup.Item>{sch}</ListGroup.Item>;
-								})}
-							</ListGroup>
-						</Card.Body>
-					</Card>
-				);
-			})}
-		</div>
-	);
+	return <div></div>;
 }
