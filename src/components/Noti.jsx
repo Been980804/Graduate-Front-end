@@ -29,6 +29,7 @@ export default function Qna({ show, onHide }) {
       .then((result) => {
         if (result.common.res_code === 200) {
           alert("공지가 작성되었습니다.");
+          window.location.reload();
           navigate("/noti");
         } else {
           console.log("공지 작성 실패");

@@ -38,7 +38,7 @@ export default function Review({ mov_no, ...reviewList }) {
       .then((result) => {
         if (result.common.res_code === 200) {
           alert("리뷰가 작성되었습니다.");
-          navigate("/noti");
+          window.location.reload();
         } else {
           console.log("리뷰 작성 실패");
         }
