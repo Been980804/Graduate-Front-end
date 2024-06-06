@@ -251,7 +251,7 @@ export default function Compare({ show, onHide, movieData }) {
             </div>
           </Form.Group>
         </Form>
-        <div style={{ margin: "20px", fontSize: "50px" }}>
+        <div style={{ margin: "20px", fontSize: "25px" }}>
           <strong>
             {movieData.mov_title}, {selectedRegion},{" "}
             {selectedDate ? selectedDate : today}
