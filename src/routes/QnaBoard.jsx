@@ -4,16 +4,22 @@ import "../assets/css/Board.css";
 import { extractDateOnly } from "../util/functionUtil.js";
 import Qna from "../components/Qna.jsx";
 import { useState } from "react";
+import { useUserState } from "../contexts/UserContext.jsx";
 
 export default function QnaBoard() {
   const response = useLoaderData();
   const qnaList = response.qnaList;
-	const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
+  const [userContext] = useUserState();
 
-  function handleShow(){
-    setShow(true);
+  function handleShow() {
+    if (userContext.mem_no != "") {
+      setShow(true);
+    }else{
+      alert('로그인 후 이용해주세요.');
+    }
   }
-  function handleClose(){
+  function handleClose() {
     setShow(false);
   }
 
@@ -49,7 +55,7 @@ export default function QnaBoard() {
       </div>
       <div className="boardBtn">
         <button onClick={handleShow}>문의하기</button>
-        <Qna show={show} onHide={handleClose}/>
+        <Qna show={show} onHide={handleClose} />
       </div>
     </div>
   );
