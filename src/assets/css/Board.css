@@ -4,6 +4,7 @@ a {
 .board-container {
 	margin: 30px;
 	padding: 20px;
+	min-height: 750px;
 }
 
 .board-header {
