@@ -4,9 +4,6 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import Schedule from "./Schedule";
-import cgv from "../assets/images/cgv_logo.png";
-import lotte from "../assets/images/lottecinema_logo.png";
-import mega from "../assets/images/megabox_logo.png";
 
 export default function Compare({ show, onHide, movieData }) {
   const { register, watch } = useForm({
@@ -96,15 +93,12 @@ export default function Compare({ show, onHide, movieData }) {
         </Form>
         <div style={{ margin: "20px", fontSize: "50px" }}>
           <strong>
-            {movieData.mov_title},{region}, {date ? date : today}
+            {movieData.mov_title}, {region}, {date ? date : today}
           </strong>
         </div>
         {/* 스케줄 표시 */}
-        <img src={cgv} style={{ height: "70px" }} />
         <Schedule schedules={schedule} th_brand={1} />
-        <img src={lotte} style={{ height: "70px" }} />
         <Schedule schedules={schedule} th_brand={2} />
-        <img src={mega} style={{ height: "70px" }} />
         <Schedule schedules={schedule} th_brand={3} />
       </Modal.Body>
     </Modal>
