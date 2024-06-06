@@ -11,8 +11,6 @@ export default function MovieDetails() {
 	const movieData = response.movieData;
 	const reviewData = response.reviewData;
 
-	const [liked, setLiked] = useState(false); // 좋아요 상태를 관리하는 상태 변수
-
 	function handleReviewSubmit() {}
 
 	function handleClose() {
@@ -21,10 +19,7 @@ export default function MovieDetails() {
 	function handleShow() {
 		setShow(true);
 	}
-	// 좋아요 버튼을 클릭했을 때 실행
-	const handleLikeClick = () => {
-		setLiked(!liked);
-	};
+
 	ScrollToTop();
 
 	return (
@@ -37,25 +32,7 @@ export default function MovieDetails() {
 							<div className="introWrapper">
 								<h2 className="title">{movieData.mov_title}</h2>
 								<h3 className="titleEng">{movieData.mov_titleEng}</h3>
-								<div className="like">
-									<div className="like-container">
-										<input
-											type="checkbox"
-											id="like-checkbox"
-											checked={liked}
-											onChange={handleLikeClick}
-										/>
 
-										<label
-											htmlFor="like-checkbox"
-											className={liked ? "liked" : ""}>
-											♥
-										</label>
-										<span style={{ fontSize: "30px", marginLeft: "10px" }}>
-											{movieData.likeCnt > 0 ? `( ${movieData.likeCnt} )` : ""}
-										</span>
-									</div>
-								</div>
 								<div className="intro">{movieData.mov_intro}</div>
 							</div>
 							<div className="poster_box">
