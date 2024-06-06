@@ -1,76 +1,96 @@
-import { Card, ListGroup } from "react-bootstrap";
+import { useState } from "react";
 import "../assets/css/Schedule.css";
-import cgv from "../assets/images/CGV_logo.png";
-import lotte from "../assets/images/LotteCinema_logo.png";
-import mega from "../assets/images/MegaBox_logo.png";
+
 export default function Schedule({ schedules, th_brand }) {
-	//schedules {th_brand, th_name, hall_name, hall_seats, sch_start, }
-	let logo;
-	let url;
-	const halls = schedules.reduce((acc, obj) => {
-		const key = `${obj.th_brand}_${obj.th_name}_${obj.hall_name}_${obj.hall_seats}`;
-		if (!acc[key]) {
-			acc[key] = [];
-		}
-		acc[key].push(obj);
-		return acc;
-	}, {});
-	const keys = Object.keys(halls);
+  let url;
+  const theaters = schedules.reduce((acc, obj) => {
+    const key = `${obj.th_brand}_${obj.th_name}`;
+    if (!acc[key]) {
+      acc[key] = {};
+    }
+    if (!acc[key][obj.hall_name]) {
+      acc[key][obj.hall_name] = [];
+    }
+    acc[key][obj.hall_name].push(obj);
+    return acc;
+  }, {});
 
-	switch (th_brand) {
-		case 1:
-			logo = cgv;
-			url = "http://www.cgv.co.kr/ticket/";
-			break;
-		case 2:
-			logo = lotte;
-			url = "https://www.lottecinema.co.kr/NLCHS/Ticketing";
-			break;
-		case 3:
-			logo = mega;
-			url = "https://www.megabox.co.kr/booking";
-			break;
-	}
-	function getSch(hallName) {
-		// 결과를 담을 배열 초기화
-		let schStarts = [];
+  switch (th_brand) {
+    case 1:
+      url = "http://www.cgv.co.kr/ticket/";
+      break;
+    case 2:
+      url = "https://www.lottecinema.co.kr/NLCHS/Ticketing";
+      break;
+    case 3:
+      url = "https://www.megabox.co.kr/booking";
+      break;
+    default:
+      url = "";
+      break;
+  }
 
-		// halls 객체를 순회하면서 조건에 맞는 sch_start를 추출
-		for (const key in halls) {
-			if (halls.hasOwnProperty(key)) {
-				const hallInfoArray = halls[key];
+  const [hoveredSchedule, setHoveredSchedule] = useState(null);
 
-				// hallInfoArray 배열을 순회하면서 조건에 맞는 sch_start를 추출
-				hallInfoArray.forEach((hallInfo) => {
-					const combinedKey = `${hallInfo.th_brand}_${hallInfo.th_name}_${hallInfo.hall_name}_${hallInfo.hall_seats}`;
-					if (combinedKey === hallName) {
-						schStarts.push(hallInfo.sch_start);
-					}
-				});
-			}
-		}
+  const handleMouseOver = (schedule) => {
+    setHoveredSchedule(schedule);
+  };
 
-		return schStarts;
-	}
-	return (
-		<div className="cards-wrapper">
-			{keys.map((key) => {
-				return (
-					<Card onClick={() => window.open(url)}>
-						<Card.Img src={logo} variant="top" />
-						<Card.Body>
-							<Card.Title>
-								{key.split("_")[1]} {key.split("_")[2].split(" ")[0]}
-							</Card.Title>
-							<ListGroup>
-								{getSch(key).map((sch) => {
-									return <ListGroup.Item>{sch}</ListGroup.Item>;
-								})}
-							</ListGroup>
-						</Card.Body>
-					</Card>
-				);
-			})}
-		</div>
-	);
+  const handleMouseOut = () => {
+    setHoveredSchedule(null);
+  };
+
+  return (
+    <div className="schedule_container">
+      {Object.keys(theaters).map((theaterKey) => {
+        const brand = parseInt(theaterKey.split("_")[0]);
+        const theaterName = theaterKey.split("_")[1];
+        if (brand === th_brand) {
+          return (
+            <div
+              key={theaterKey}
+              className="theaterWrapper"
+              onClick={() => window.open(url)}
+            >
+              <div>
+                <div className="theaterName">
+                  <strong>{theaterName}</strong>
+                </div>
+                {Object.keys(theaters[theaterKey]).map((hallKey) => {
+                  return (
+                    <div key={hallKey} className="hallWrapper">
+                      <div className="hallInfo">
+                        <div className="hallName">{hallKey.split(" ")[0]}</div>
+                        <div className="hallSeat">
+                          총 {theaters[theaterKey][hallKey][0].hall_seats}
+                        </div>
+                      </div>
+                      <div className="scheduleWrapper">
+                        {theaters[theaterKey][hallKey].map((schedule) => {
+                          return (
+							<div
+							key={schedule.id}
+							className="schedule"
+							onMouseOver={() => handleMouseOver(schedule)}
+							onMouseOut={handleMouseOut}
+						  >
+							{hoveredSchedule === schedule
+							  ? `${schedule.sch_start} ~ ${schedule.sch_end}`
+							  : schedule.sch_start}
+						  </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        } else {
+          return null;
+        }
+      })}
+    </div>
+  );
 }
