@@ -63,7 +63,7 @@ export default function Schedule({ schedules, th_brand }) {
   return (
     <div className="schedule_container">
       {logo && (
-        <div className="logoWrapper" onClick={() => window.open(url)}>
+        <div className="logoWrapper" >
           <img src={logo} alt="Logo" className="brandLogo" style={{height:'70px'}}/>
         </div>
       )}
@@ -75,7 +75,6 @@ export default function Schedule({ schedules, th_brand }) {
             <div
               key={theaterKey}
               className="theaterWrapper"
-              onClick={() => window.open(url)}
             >
               <div>
                 <div className="theaterName">
@@ -98,6 +97,7 @@ export default function Schedule({ schedules, th_brand }) {
                               className="schedule"
                               onMouseOver={() => handleMouseOver(schedule)}
                               onMouseOut={handleMouseOut}
+                              onClick={() => window.open(url)}
                             >
                               {hoveredSchedule === schedule
                                 ? `${schedule.sch_start} ~ ${schedule.sch_end}`

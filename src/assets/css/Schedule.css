@@ -32,6 +32,7 @@
   text-align: center;
   align-content: center;
   font-weight: bold;
+  cursor: pointer;
 }
 .schedule:hover {
   background-color: #191351;
