@@ -189,7 +189,7 @@ export default function Compare({ show, onHide, movieData }) {
                 style={{
                   fontSize: "15px",
                   fontWeight: "bold",
-                  marginLeft: "44px",
+                  marginLeft: "50px",
                 }}
               >
                 {new Date(selectedDate).getFullYear()}
