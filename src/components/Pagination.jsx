@@ -29,7 +29,7 @@ function Items({ currentItems, type }) {
 							return (
 								<Link
 									to={`/detailNoti/${item.noti_no}`}
-									key={noti.noti_no}
+									key={item.noti_no}
 									className="board-link">
 									<div className="board-column">
 										<div className="board-num">{idx + 1}</div>
@@ -52,6 +52,7 @@ function Items({ currentItems, type }) {
 }
 
 export default function Pagination({ items, itemsPerPage, type }) {
+	if (!items) return;
 	const [itemOffset, setItemOffset] = useState(0);
 	const endOffset = itemOffset + itemsPerPage;
 	const currentItems = items.slice(itemOffset, endOffset);
@@ -60,11 +61,10 @@ export default function Pagination({ items, itemsPerPage, type }) {
 		const newOffset = (e.selected * itemsPerPage) % items.length;
 		setItemOffset(newOffset);
 	}
-
 	return (
 		<>
 			<div className="page-container">
-				<Items currentItems={currentItems} type={type} />
+				{items && <Items currentItems={currentItems} type={type} />}
 
 				<ReactPaginate
 					className="pagingBox"
