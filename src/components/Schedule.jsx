@@ -1,8 +1,13 @@
 import { useState } from "react";
 import "../assets/css/Schedule.css";
+import cgv from "../assets/images/cgv_logo.png";
+import lotte from "../assets/images/lottecinema_logo.png";
+import mega from "../assets/images/megabox_logo.png";
 
 export default function Schedule({ schedules, th_brand }) {
+  let logo;
   let url;
+  let style;
   const theaters = schedules.reduce((acc, obj) => {
     const key = `${obj.th_brand}_${obj.th_name}`;
     if (!acc[key]) {
@@ -17,13 +22,28 @@ export default function Schedule({ schedules, th_brand }) {
 
   switch (th_brand) {
     case 1:
-      url = "http://www.cgv.co.kr/ticket/";
+      if (Object.keys(theaters).some((key) => parseInt(key.split("_")[0]) === 1)) {
+        logo = cgv;
+        url = "http://www.cgv.co.kr/ticket/";
+      } else {
+        logo = null;
+      }
       break;
     case 2:
-      url = "https://www.lottecinema.co.kr/NLCHS/Ticketing";
+      if (Object.keys(theaters).some((key) => parseInt(key.split("_")[0]) === 2)) {
+        logo = lotte;
+        url = "https://www.lottecinema.co.kr/NLCHS/Ticketing";
+      } else {
+        logo = null;
+      }
       break;
     case 3:
-      url = "https://www.megabox.co.kr/booking";
+      if (Object.keys(theaters).some((key) => parseInt(key.split("_")[0]) === 3)) {
+        logo = mega;
+        url = "https://www.megabox.co.kr/booking";
+      } else {
+        logo = null;
+      }
       break;
     default:
       url = "";
@@ -42,6 +62,11 @@ export default function Schedule({ schedules, th_brand }) {
 
   return (
     <div className="schedule_container">
+      {logo && (
+        <div className="logoWrapper" onClick={() => window.open(url)}>
+          <img src={logo} alt="Logo" className="brandLogo" style={{height:'70px'}}/>
+        </div>
+      )}
       {Object.keys(theaters).map((theaterKey) => {
         const brand = parseInt(theaterKey.split("_")[0]);
         const theaterName = theaterKey.split("_")[1];
